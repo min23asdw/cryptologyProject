@@ -53,18 +53,18 @@ int main(){
         if(UserOperator == "EXIT") break;
         //Classic cryptography
 
-        //else if(UserOperator == "01 ancient Greek scytale") { system("scytale.exe");system("cls");}  //system_scytale(inputs, CrypType, CrypType, outputs);
-        //else if(UserOperator == "02 Atbash") { system("Atbash.exe");system("cls");}  //system_Atbash(inputs, CrypType, key, outputs);
+        //else if(UserOperator == "01 ancient Greek scytale") {system("cls"); system("scytale.exe");system("cls");}  //system_scytale(inputs, CrypType, CrypType, outputs);
+        //else if(UserOperator == "02 Atbash") { system("cls");system("Atbash.exe");system("cls");}  //system_Atbash(inputs, CrypType, key, outputs);
 
         //Mechanical
 
-        else if(UserOperator == "03"){ system("enigma.exe");system("cls");}    //system_Enigma(inputs, CrypType, key, outputs);
+        else if(UserOperator == "03"){system("cls"); system("enigma.exe");system("cls");}    //system_Enigma(inputs, CrypType, key, outputs);
 
 
         //computer modern cryptography
 
-        //else if(UserOperator == "04 SHA2") { system("SHA2.exe");system("cls");}  //system_SHA2(inputs, CrypType, key, outputs);
-        //  else if(UserOperator == "05 Base64"){ system("Base64.exe");system("cls");} //system_Base64(inputs, CrypType, key, outputs);
+        //else if(UserOperator == "04 SHA2") {system("cls"); system("SHA2.exe");system("cls");}  //system_SHA2(inputs, CrypType, key, outputs);
+        //  else if(UserOperator == "05 Base64"){system("cls"); system("Base64.exe");system("cls");} //system_Base64(inputs, CrypType, key, outputs);
 
         else{
             cout << "---------------------------------\n";
