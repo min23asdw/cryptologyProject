@@ -1,4 +1,4 @@
-// ทำหน้าที่เก็บสิ่งที่ผู้ใช้พิมมา  และนำไปเข้ารหัสผ่านวิธีการต่างๆ 
+// ทำหน้าที่เก็บสิ่งที่ผู้ใช้พิมมา  และนำไปเข้ารหัสผ่านวิธีการต่างๆ
 #include<iostream>
 #include<fstream>
 #include<vector>
@@ -35,19 +35,20 @@ string toUpperStr(string x){
 
 void show_Command_and_showData_From_user(){
 cout<<"cryptography"   <<"\n";
-cout<<"if your want to use   type \"number \"   for enigma system\n";
-cout<<"if your want to use   type \"number \"   for enigma system\n";
-cout<<"if your want to use   type \"number \"   for enigma system\n";
-cout<<"if your want to use   type \"number \"   for enigma system\n";
-cout<<"if your want to use   type \"number \"   for enigma system\n";
-cout<<"if your want to use   type \"number \"   for enigma system\n";
-cout<<"if your want to use   type \"number \"   for enigma system\n";
-cout<<"if your want to use   type \"number \"   for enigma system\n";
-cout<<"if your want to use   type \"number \"   for enigma system\n";
+cout<<"if your want to use\n";
+cout<<"type \"01\"   for enigma system\n";
+cout<<"type \"02\"   for Poorish system\n";
+cout<<"type \"03\"   for Rc4 system\n";
+cout<<"type \"04\"   for Sha system\n";
+cout<<"type \"quit\"   to EXIT program\n";
+cout<<"-------------------------------\n";
+cout<<"then Choose a method encrypting or decrypting(e/d) \n";
+cout<<"-------------------------------\n";
 
 
  }
-int engimasystem(){
+
+int engimasystem(){ // Don't touch  Don't touch  Don't touch  Don't touch
 bool repeat = true;
 while(repeat){
     option = "";
@@ -132,6 +133,7 @@ int main(){
 
 
     do{
+      system("cls");
         show_Command_and_showData_From_user();
         string UserOperator, CrypType;  //CrypType is encryption or decryption
         vector<string> key;
@@ -139,27 +141,24 @@ int main(){
         getCommand(UserOperator,CrypType);
         UserOperator = toUpperStr(UserOperator);
         CrypType = toUpperStr(CrypType);
-        if(UserOperator == "EXIT") break;
-        //Classic cryptography
-
-        //else if(UserOperator == "01 ancient Greek scytale") {system("cls"); system("scytale.exe");system("cls");}  //system_scytale(inputs, CrypType, CrypType, outputs);
-        //else if(UserOperator == "02 Atbash") { system("cls");system("Atbash.exe");system("cls");}  //system_Atbash(inputs, CrypType, key, outputs);
+        if(UserOperator == "QUIT") break;
 
         //Mechanical
 
-        else if(UserOperator == "03"){system("cls"); engimasystem();system("cls");}    //system_Enigma(inputs, CrypType, key, outputs);
+        else if(UserOperator == "01"){system("cls"); engimasystem(); system("cls");}    //system_Enigma(inputs, CrypType, key, outputs);
 
 
         //computer modern cryptography
-
-        //else if(UserOperator == "04 SHA2") {system("cls"); system("SHA2.exe");system("cls");}  //system_SHA2(inputs, CrypType, key, outputs);
-        //  else if(UserOperator == "05 Base64"){system("cls"); system("Base64.exe");system("cls");} //system_Base64(inputs, CrypType, key, outputs);
+      //    else if(UserOperator == "02") {system("cls"); PoorishSystem();system("cls");}  //system_Poorish(inputs, CrypType, key, outputs);
+        //  else if(UserOperator == "03") {system("cls"); Rc4System();system("cls");}  //system_Rc4(inputs, CrypType, key, outputs);
+        //  else if(UserOperator == "04"){system("cls"); ShaSystem();system("cls");} //system_Sha(inputs, CrypType, key, outputs);
 
         else{
             cout << "---------------------------------\n";
             cout << "Invalid UserOperator.\n";
             cout << "---------------------------------\n";
         }
+
     }while(true);
 
     return 0;
