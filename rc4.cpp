@@ -12,6 +12,7 @@ vector<char> S;
 string key = "";
 string plaintext;
 
+// Delay for Next Algorithm
 void NextAlgor(){
         Sleep(500);
         cout << endl << endl;
@@ -54,12 +55,12 @@ void arrayInit(vector<char> &S){
         Sleep(10);
     }
     Sleep(1000);
-    cout << "the array will look like S[] = {0, 1, 2, 3, ------, 254, 255}" << endl;
+    cout << "the array will look like S[] = {0, 1, 2, 3, ...... , 254, 255}" << endl;
     Sleep(1000);
     cout << "After this, we will run the KSA algorithm.";
 }
 
-// Key Scheduling Algorithm
+// Key Scheduling Algorithm (KSA)
 void keySchedulAlgor(string &key,vector<char> &S){
     Sleep(1000);
     cout << ": Key Scheduling Algorithm (KSA) :" << endl << endl;
@@ -99,7 +100,7 @@ void keySchedulAlgor(string &key,vector<char> &S){
         swap(S[i], S[j]);
         if((i % 5) == 0){
         system("cls");
-        cout << ": Key Scheduling Algorithm (KSA) :" << endl;
+        cout << ": Key Scheduling Algorithm (KSA) :" << endl << endl;
         cout << "The initialized array S[256] is now run through the KSA.\nThe KSA uses the secret key to scramble the array." << endl;
         cout << "KSA is a simple loop, in which we are having two variable i and j." << endl;
         cout << "We are using these variables to rearrange the array." << endl << endl;
@@ -117,6 +118,17 @@ void keySchedulAlgor(string &key,vector<char> &S){
     cout << "After this, we will run the PRGA algorithm.";
 }
 
+// Pseudo Random Generation Algorithm (PRGA)
+void pseudoRanGen(){
+
+
+
+
+
+}
+
+
+// mainframe
 int main(){
     string select;
     system("cls");
@@ -150,6 +162,10 @@ int main(){
         keySchedulAlgor(key,S);
         NextAlgor();
         cout << ": Pseudo Random Generation Algorithm (PRGA) :" << endl << endl;
+        Sleep(500);
+        cout << "Press anykey to next step.";
+        cin.get();
+    
     }
 
     
