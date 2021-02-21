@@ -1,3 +1,4 @@
+// ทำหน้าที่เก็บสิ่งที่ผู้ใช้พิมมา  และนำไปเข้ารหัสผ่านวิธีการต่างๆ 
 #include<iostream>
 #include<fstream>
 #include<vector>
@@ -5,6 +6,12 @@
 #include<cstdlib>
 //#include "enigma.h"
 #include"enigma.cpp"
+
+
+
+
+
+
 using namespace std;
 
 // data form User
@@ -40,8 +47,7 @@ cout<<"if your want to use   type \"number \"   for enigma system\n";
 
 
  }
-int engimasystem()
-{
+int engimasystem(){
 bool repeat = true;
 while(repeat){
     option = "";
