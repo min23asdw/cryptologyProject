@@ -1,4 +1,4 @@
-//Enigma Machine
+//Enigma Machine beta
 #include <iostream>
 #include <string>
 #include <conio.h>
