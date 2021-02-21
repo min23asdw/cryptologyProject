@@ -3,9 +3,22 @@
 #include<vector>
 #include<string>
 #include<cstdlib>
-
+//#include "enigma.h"
+#include"enigma.cpp"
 using namespace std;
 
+// data form User
+
+
+
+//
+
+//simple text of random
+
+
+
+
+//
 
 string toUpperStr(string x){
     string y = x;
@@ -14,7 +27,77 @@ string toUpperStr(string x){
 }
 
 void show_Command_and_showData_From_user(){
-cout<<"if your want to use   type \"03\"   for enigma system\n"; }
+cout<<"cryptography"   <<"\n";
+cout<<"if your want to use   type \"number \"   for enigma system\n";
+cout<<"if your want to use   type \"number \"   for enigma system\n";
+cout<<"if your want to use   type \"number \"   for enigma system\n";
+cout<<"if your want to use   type \"number \"   for enigma system\n";
+cout<<"if your want to use   type \"number \"   for enigma system\n";
+cout<<"if your want to use   type \"number \"   for enigma system\n";
+cout<<"if your want to use   type \"number \"   for enigma system\n";
+cout<<"if your want to use   type \"number \"   for enigma system\n";
+cout<<"if your want to use   type \"number \"   for enigma system\n";
+
+
+ }
+int engimasystem()
+{
+bool repeat = true;
+while(repeat){
+    option = "";
+    choiceforencr = "";
+    chosen_roter_one_s = "";
+        chosen_roter_two_s = "";
+        chosen_roter_three_s = "";
+            currentLetter = "";
+            encrypt_decrypt_output = "";
+                chosen_roter_one = 0;
+                chosen_roter_two = 0;
+            chosen_roter_three = 0;
+            rotate_position_one = 0;
+        rotate_position_two = 0;
+        rotate_position_three = 0;
+    error = 0;
+    encr_decry_length = 0;
+        error = 0;
+        encrypt_Toggle = NULL;
+            encrypt_decrypt_output = "";
+  cout << "Welcome to the Enigma console. Are you encrypting or decrypting(e/d) or to end the program press Q" << endl;
+
+  cin >> option;
+
+  if (option == "e" || option == "encrypting")
+    {
+      encrypt_Toggle = true;
+      cout << "You are encrypting what would you like to encrypte:\n";
+      cin >> choiceforencr;
+      chose_a_roter(0);
+      convert ();
+      encrypt_enigma();
+      cout << "Your encrypted text is <<" << encrypt_decrypt_output << ">>" << endl;
+    }
+  else if (option == "d" || option == "decrypting")
+    {
+      encrypt_Toggle = false;
+      cout << "You are decrypting what would you like to decrypte:\n";
+      cin >> choiceforencr;
+      chose_a_roter(0);
+      convert();
+      encrypt_enigma();
+      cout << "Your decrypted text is <<" << encrypt_decrypt_output << ">>" << endl;
+    }
+  else if (option == "q"){
+    return 0;
+  }
+
+  else
+    {
+      do{
+        r_option ();
+    }while (option != "e" || option != "d" || option != "decrypting" || option != "encrypting" || option != "q");
+    }
+}return 0;
+}
 
 void getCommand(string &UserOperator,string &CrypType){
 cout << "Please inputs your Operator: ";
@@ -58,7 +141,7 @@ int main(){
 
         //Mechanical
 
-        else if(UserOperator == "03"){system("cls"); system("enigma.exe");system("cls");}    //system_Enigma(inputs, CrypType, key, outputs);
+        else if(UserOperator == "03"){system("cls"); engimasystem();system("cls");}    //system_Enigma(inputs, CrypType, key, outputs);
 
 
         //computer modern cryptography

@@ -243,6 +243,8 @@ int roter_5(){
     else{currentLetter = currentLetter;}
 rotate_position_one += 1;
 }
+
+
     auto final_Roter_one = roter_1;
     auto final_Roter_two = roter_2;
     auto final_Roter_three = roter_3;
@@ -317,6 +319,7 @@ void encrypt_enigma(){
     }
     enc_Decry_f_string();
 }
+
 class EncryDecry
 {
 
@@ -427,66 +430,4 @@ void convert(){
         gone_trough++;
     }while(error == 1 || chosen_roter_one == chosen_roter_two || chosen_roter_two == chosen_roter_three || chosen_roter_three == chosen_roter_one);
 
-}
-
-
-
-int
-main ()
-{
-bool repeat = true;
-while(repeat){
-    option = "";
-    choiceforencr = "";
-    chosen_roter_one_s = "";
-        chosen_roter_two_s = "";
-        chosen_roter_three_s = "";
-            currentLetter = "";
-            encrypt_decrypt_output = "";
-                chosen_roter_one = 0;
-                chosen_roter_two = 0;
-            chosen_roter_three = 0;
-            rotate_position_one = 0;
-        rotate_position_two = 0;
-        rotate_position_three = 0;
-    error = 0;
-    encr_decry_length = 0;
-        error = 0;
-        encrypt_Toggle = NULL;
-            encrypt_decrypt_output = "";
-  cout << "Welcome to the Enigma console. Are you encrypting or decrypting(e/d) or to end the program press Q" << endl;
-
-  cin >> option;
-
-  if (option == "e" || option == "encrypting")
-    {
-      encrypt_Toggle = true;
-      cout << "You are encrypting what would you like to encrypte:\n";
-      cin >> choiceforencr;
-      chose_a_roter(0);
-      convert ();
-      encrypt_enigma();
-      cout << "Your encrypted text is <<" << encrypt_decrypt_output << ">>" << endl;
-    }
-  else if (option == "d" || option == "decrypting")
-    {
-      encrypt_Toggle = false;
-      cout << "You are decrypting what would you like to decrypte:\n";
-      cin >> choiceforencr;
-      chose_a_roter(0);
-      convert();
-      encrypt_enigma();
-      cout << "Your decrypted text is <<" << encrypt_decrypt_output << ">>" << endl;
-    }
-  else if (option == "q"){
-    return 0;
-  }
-
-  else
-    {
-      do{
-        r_option ();
-    }while (option != "e" || option != "d" || option != "decrypting" || option != "encrypting" || option != "q");
-    }
-}
 }
