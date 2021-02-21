@@ -1,6 +1,6 @@
 #include<iostream>
 #include<vector>
-#include <algorithm>
+#include<algorithm>
 #include<string>
 #include<iomanip>
 #include <windows.h>
@@ -11,6 +11,23 @@ using namespace std;
 vector<char> S;
 string key = "";
 string plaintext;
+
+void NextAlgor(){
+        Sleep(500);
+        cout << endl << endl;
+        Sleep(500);
+        cout << "___________________________________________________________________________________" << endl << endl;
+        Sleep(1000);
+        cout << "|\n";
+        Sleep(500);
+        cout << "|\n";
+        Sleep(500);
+        cout << "|\n";
+        Sleep(500);
+        cout << "V";
+        cout << endl << endl;
+        Sleep(1000);
+}
 
 // Array Initialization
 void arrayInit(vector<char> &S){
@@ -45,7 +62,7 @@ void arrayInit(vector<char> &S){
 // Key Scheduling Algorithm
 void keySchedulAlgor(string &key,vector<char> &S){
     Sleep(1000);
-    cout << ": Key Scheduling Algorithm :" << endl << endl;
+    cout << ": Key Scheduling Algorithm (KSA) :" << endl << endl;
     unsigned int i = 0, j = 0;
     Sleep(1000);
     cout << "[+] Your Plain Text: " << plaintext << endl << endl;
@@ -54,11 +71,50 @@ void keySchedulAlgor(string &key,vector<char> &S){
     cin >> key;
     Sleep(500);
     cout << "    Your Secret Key: " << key << endl;
+    cout << "    Your Secret Key Length: " << key.length() << endl << endl ;
+    Sleep(500);
+    cout << "Press anykey to next step.";
+        cin.ignore();
+        cin.get();
+    Sleep(500);
+    system("cls");
+    Sleep(1000);
+    cout << ": Key Scheduling Algorithm (KSA) :" << endl << endl; 
+    Sleep(1000);
+    cout << "The initialized array S[256] is now run through the KSA.\nThe KSA uses the secret key to scramble the array." << endl;
+    Sleep(1000);
+    cout << "KSA is a simple loop, in which we are having two variable i and j." << endl;
+    Sleep(1000);
+    cout << "We are using these variables to rearrange the array." << endl << endl;
+    Sleep(1000);
+    cout << "[+] The KSA scramble array S[256].. " << endl << endl;
+    Sleep(500);
+    cout << "         " << "Position J is : " << j << endl;
+    Sleep(500);
+    cout << "         " << "Swap S[i] with S[j]" << endl;
+    Sleep(500);
     for (i = 0; i < 256; i++)
     {
         j = (j + S[i] + key.at(i % key.length())) % 256;
         swap(S[i], S[j]);
+        if((i % 5) == 0){
+        system("cls");
+        cout << ": Key Scheduling Algorithm (KSA) :" << endl;
+        cout << "The initialized array S[256] is now run through the KSA.\nThe KSA uses the secret key to scramble the array." << endl;
+        cout << "KSA is a simple loop, in which we are having two variable i and j." << endl;
+        cout << "We are using these variables to rearrange the array." << endl << endl;
+        cout << "[+] The KSA scramble array S[256].. " << endl << endl;
+        cout << "         " << "Position J is : " << j << endl;
+        cout << "         " << "Swap S[i] with S[j]" << endl;
+        cout << "         " << "Swapping.. " << endl << "         " << "S[" << i << "]" << " = " << S[i] << endl;
+        cout << "         " << "S[" << j << "]" << " = " << S[j] << endl;
+        Sleep(100);
     }
+    }
+    Sleep(1000);
+    cout << "\n\nRearranging the array is done by using a secret key.\n\n";
+    Sleep(1000);
+    cout << "After this, we will run the PRGA algorithm.";
 }
 
 int main(){
@@ -82,34 +138,18 @@ int main(){
         cout << "Press anykey to next step.";
         cin.ignore();
         cin.get();
-        Sleep(2000);
+        Sleep(1000);
         arrayInit(S);
-        Sleep(500);
-        cout << endl << endl;
-        Sleep(500);
-        cout << "___________________________________________________________________________________" << endl << endl;
-        Sleep(1000);
-        cout << "|\n";
-        Sleep(500);
-        cout << "|\n";
-        Sleep(500);
-        cout << "|\n";
-        Sleep(500);
-        cout << "|\n";
-        Sleep(500);
-        cout << "|\n";
-        Sleep(500);
-        cout << "V";
-        cout << endl << endl;
-        Sleep(1000);
-        cout << ": Key Scheduling Algorithm :" << endl << endl;
+        NextAlgor();
+        cout << ": Key Scheduling Algorithm (KSA) :" << endl << endl;
         Sleep(500);
         cout << "Press anykey to next step.";
-        cin.ignore();
         cin.get();
         Sleep(1000);
         system("cls");
         keySchedulAlgor(key,S);
+        NextAlgor();
+        cout << ": Pseudo Random Generation Algorithm (PRGA) :" << endl << endl;
     }
 
     
