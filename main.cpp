@@ -4,8 +4,11 @@
 #include<vector>
 #include<string>
 #include<cstdlib>
+#include<windows.h>
+
 //#include "enigma.h"
 #include"enigma.cpp"
+#include"rc4.cpp"
 
 
 
@@ -36,10 +39,10 @@ string toUpperStr(string x){
 void show_Command_and_showData_From_user(){
 cout<<"cryptography"   <<"\n";
 cout<<"if your want to use\n";
-cout<<"type \"01\"   for enigma system\n";
-cout<<"type \"02\"   for Poorish system\n";
-cout<<"type \"03\"   for Rc4 system\n";
-cout<<"type \"04\"   for Sha system\n";
+cout<<"type \"01\"   for enigma system [Partly Work]\n";
+cout<<"type \"02\"   for RSA system[-]\n";
+cout<<"type \"03\"   for RC4 system[Not yet finished]\n";
+cout<<"type \"04\"   for Steganography system[Not yet finished]\n";
 cout<<"type \"quit\"   to EXIT program\n";
 cout<<"-------------------------------\n";
 cout<<"then Choose a method encrypting or decrypting(e/d) \n";
@@ -47,7 +50,15 @@ cout<<"-------------------------------\n";
 
 
  }
+void enigmainfo(){
+cout << "The Enigma machine is a cipher device developed and used in the early- to mid-20th century to protect commercial, diplomatic, and military communication.\n";
+cout << "It was employed extensively by Nazi Germany during World War II\n";
 
+
+
+
+
+}
 int engimasystem(){ // Don't touch  Don't touch  Don't touch  Don't touch
 bool repeat = true;
 while(repeat){
@@ -103,7 +114,51 @@ while(repeat){
         r_option ();
     }while (option != "e" || option != "d" || option != "decrypting" || option != "encrypting" || option != "q");
     }
-}return 0;
+}
+return 0;
+}
+
+int Rc4System(){
+    string select;
+    system("cls");
+    cout << "The RC4 cipher" << endl << endl;
+    cout << "[00] How it work ?" << endl;
+    cout << "[01] Encryption" << endl;
+    cout << "[02] Decryption" << endl;
+    cout << "Select by enter number 00-02 : ";
+    cin >> select;
+    if(select == "01"){
+        system("cls");
+        Sleep(500);
+        cout << "[ Encryption ]";
+        cout << endl << endl << "Input the text: ";
+        cin >> plaintext;
+        cout << "[+] Your Plain Text: " << plaintext << endl << endl;
+        Sleep(500);
+        cout << "Let's encrypt your text.." << endl;
+        cout << "Press anykey to next step.";
+        cin.ignore();
+        cin.get();
+        Sleep(1000);
+        arrayInit(S);
+        NextAlgor();
+        cout << ": Key Scheduling Algorithm (KSA) :" << endl << endl;
+        Sleep(500);
+        cout << "Press anykey to next step.";
+        cin.get();
+        Sleep(1000);
+        system("cls");
+        keySchedulAlgor(key,S);
+        NextAlgor();
+        cout << ": Pseudo Random Generation Algorithm (PRGA) :" << endl << endl;
+        Sleep(500);
+        cout << "Press anykey to next step.";
+        cin.get();
+
+    }
+
+
+return 0;
 }
 
 void getCommand(string &UserOperator,string &CrypType){
@@ -133,31 +188,42 @@ int main(){
 
 
     do{
-      system("cls");
-        show_Command_and_showData_From_user();
-        string UserOperator, CrypType;  //CrypType is encryption or decryption
-        vector<string> key;
-        //char endecryp = '';
-        getCommand(UserOperator,CrypType);
-        UserOperator = toUpperStr(UserOperator);
-        CrypType = toUpperStr(CrypType);
-        if(UserOperator == "QUIT") break;
+        system("cls");
+          show_Command_and_showData_From_user();
+          string UserOperator, CrypType;  //CrypType is encryption or decryption
+          vector<string> key;
+          //char endecryp = '';
+          getCommand(UserOperator,CrypType);
+          UserOperator = toUpperStr(UserOperator);
+          CrypType = toUpperStr(CrypType);
+          if(UserOperator == "QUIT") break;
 
-        //Mechanical
+          //Mechanical
 
-        else if(UserOperator == "01"){system("cls"); engimasystem(); system("cls");}    //system_Enigma(inputs, CrypType, key, outputs);
+          else if(UserOperator == "01"){
 
 
-        //computer modern cryptography
-      //    else if(UserOperator == "02") {system("cls"); PoorishSystem();system("cls");}  //system_Poorish(inputs, CrypType, key, outputs);
-        //  else if(UserOperator == "03") {system("cls"); Rc4System();system("cls");}  //system_Rc4(inputs, CrypType, key, outputs);
-        //  else if(UserOperator == "04"){system("cls"); ShaSystem();system("cls");} //system_Sha(inputs, CrypType, key, outputs);
 
-        else{
-            cout << "---------------------------------\n";
-            cout << "Invalid UserOperator.\n";
-            cout << "---------------------------------\n";
-        }
+
+
+            system("cls");
+            enigmainfo();
+            Sleep(3000);
+            engimasystem();
+            system("cls");
+          }    //system_Enigma(inputs, CrypType, key, outputs);
+
+
+          //computer modern cryptography
+        //    else if(UserOperator == "02") {system("cls"); PoorishSystem();system("cls");}  //system_Poorish(inputs, CrypType, key, outputs);
+           else if(UserOperator == "03") {system("cls"); Rc4System();system("cls");}  //system_Rc4(inputs, CrypType, key, outputs);
+          //  else if(UserOperator == "04"){system("cls"); ShaSystem();system("cls");} //system_Sha(inputs, CrypType, key, outputs);
+
+          else{
+              cout << "---------------------------------\n";
+              cout << "Invalid UserOperator.\n";
+              cout << "---------------------------------\n";
+          }
 
     }while(true);
 
