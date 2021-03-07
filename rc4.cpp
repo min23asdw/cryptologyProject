@@ -18,22 +18,6 @@ char cipherText[256] = { ' ' };
 char decrypted[256] = { ' ' };
 unsigned int temp = 0;
 
-// Delay for Next Algorithm
-void NextAlgor(){
-        Sleep(250);
-        cout << endl << endl;
-        Sleep(250);
-        cout << "___________________________________________________________________________________" << endl << endl;
-        Sleep(500);
-        cout << ".";
-        Sleep(250);
-        cout << " . ";
-        Sleep(250);
-        cout << ". ";
-        Sleep(250);
-        cout << " > ";
-        Sleep(500);
-}
 
 // Array Initialization
 void arrayInit(vector<unsigned char> &S){
@@ -139,7 +123,7 @@ void pseudoRanGen(string plaintext,vector<unsigned char> S){
     }
 }
 
-// Encyption Algorithm [ Plaintext XOR with Keystream ]
+// Encyption Algorithm [ Plaintext XOR with Keystream ] Need to run Array Init,KSA,PRGA before this
 void rc4Encrypt(string plaintext,vector<unsigned char> keyStream){
     for(int i = 0; i < plaintext.size(); i++){
         cipherText[i] = keyStream[i] ^ plaintext[i];  // Plaintext XOR with Keystream = Ciphertext
@@ -147,7 +131,7 @@ void rc4Encrypt(string plaintext,vector<unsigned char> keyStream){
 }
 
 
-// Decryption Algorithm [ Ciphertext XOR with Keystream ]
+// Decryption Algorithm [ Ciphertext XOR with Keystream ] Need to run Array Init,KSA,PRGA before this
 void rc4Decrypt(string ciphertext,vector<unsigned char> keyStream){
         for(int i = 0; i < plaintext.size()+1; i++){
          decrypted[i] = keyStream[i] ^ ciphertext[i]; // Ciphertext XOR with Keystream = Plaintext
@@ -155,10 +139,101 @@ void rc4Decrypt(string ciphertext,vector<unsigned char> keyStream){
 }
 
 
+// Encryption implement
+void modeEncrypt(){
+		color(7);
+		char select;
+		system("cls");
+	  	cout << "[ Encryption ]";
+        cout << endl << endl << "Input the text: ";
+        cin >> plaintext;
+        Sleep(250);
+        cout << "[+] Your Plain Text: " << plaintext << endl << endl;
+        Sleep(250);
+        cout << "Let's encrypt your text.." << endl;
+        Sleep(500);
+        cout << "Press anykey to next step.";
+        cin.ignore();
+        cin.get();
+        Sleep(500);
+        arrayInit(S);
+        NextAlgor();
+        cout << ": Key Scheduling Algorithm (KSA) :" << endl << endl;
+        Sleep(250);
+        cout << "Press anykey to next step.";
+        cin.get();
+        Sleep(500);
+        system("cls");
+        keySchedulAlgor(key,S);
+        NextAlgor();
+        cout << ": Pseudo Random Generation Algorithm (PRGA) :" << endl << endl;
+        Sleep(250);
+        cout << "Press anykey to next step.";
+        cin.get();
+        pseudoRanGen(plaintext,S);
+        Sleep(500);
+        cout << "[ Result ]" << endl << endl;
+        Sleep(250);
+        cout << "Your Plaintext: " << plaintext;
+        Sleep(250);
+        cout << endl << "Your Secret Key: " << key << endl << endl;
+        Sleep(500);
+        cout << "Your keystream (hex) is : ";
+        for(int i = 0 ; i<keyStream.size(); i++){
+            cout << uppercase << hex << setfill('0') << setw(2) << (int)(*(unsigned char*)(&keyStream[i])) << " ";
+        }
+        Sleep(500);
+        rc4Encrypt(plaintext,keyStream);
+        Sleep(250);
+        cout << "\nYour Encrypted text (hex): " ;
+        for(int j = 0; j < plaintext.length(); j++){
+		cout << uppercase << hex << setfill('0') << setw(2) << (int)(*(unsigned char*)(&cipherText[j])) << " ";
+        }
+        	Sleep(1000);
+        	gotoxy(5,24);
+			color(12);
+			cout << "Press Q to main menu";
+			color(7);
+			for(int i = 0;;){
+				select = _getch();
+				if(select == 'Q' || select == 'q'){
+					break;
+				}
+			}
+			
+}
+
+// Decryption implement
+void modeDecrypt(){
+	color(7);
+	char select;
+	system("cls");
+	cout << "In the process of building...";
+	Sleep(1000);
+        	gotoxy(5,24);
+			color(12);
+			cout << "Press Q to main menu";
+			color(7);
+			for(int i = 0;;){
+				select = _getch();
+				if(select == 'Q' || select == 'q'){
+					break;
+				}
+			}
+}
+
 
 // mainframe
 int main(){
-    RC4menu();
+	while(true){
+    int mode = RC4menu();
+    if(mode == 2){
+    	modeEncrypt();
+	}
+	if(mode == 3){
+		modeDecrypt();
+	}
+    }
     return 0;
     
 
