@@ -236,52 +236,10 @@ int main(){
     }
     return 0;
     
-
-
-/*
-    
-        cout << "[ Encryption ]";
-        cout << endl << endl << "Input the text: ";
-        cin >> plaintext;
-        cout << "[+] Your Plain Text: " << plaintext << endl << endl;
-    //    Sleep(500);
-        cout << "Let's encrypt your text.." << endl;
-        cout << "Press anykey to next step.";
-        cin.ignore();
-        cin.get();
-     //   Sleep(1000);
-        arrayInit(S);
-        NextAlgor();
-        cout << ": Key Scheduling Algorithm (KSA) :" << endl << endl;
-      //  Sleep(500);
-        cout << "Press anykey to next step.";
-        cin.get();
-     //   Sleep(1000);
-        system("cls");
-        keySchedulAlgor(key,S);
-        NextAlgor();
-        cout << ": Pseudo Random Generation Algorithm (PRGA) :" << endl << endl;
-      //  Sleep(500);
-        cout << "Press anykey to next step.";
-        cin.get();
-        pseudoRanGen(plaintext,S);
-        cout << "Your Plaintext: " << plaintext;
-        cout << endl << "Your Secret Key: " << key << endl << endl;
-        cout << "Your keystream (hex) is : ";
-        for(int i = 0 ; i<keyStream.size(); i++){
-            cout << uppercase << hex << setfill('0') << setw(2) << (int)(*(unsigned char*)(&keyStream[i])) << " ";
-        }
-        rc4Encrypt(plaintext,keyStream);
-        cout << "\nYour Encrypted text (hex): " ;
-        for(int j = 0; j < plaintext.length(); j++){
-		cout << uppercase << hex << setfill('0') << setw(2) << (int)(*(unsigned char*)(&cipherText[j])) << " ";
-        }
-
+    /*
         rc4Decrypt(cipherText,keyStream);
         cout << "\nYour Decrypted text (char): " ;
         cout << decrypted;
 
     */
-
-    
 }
