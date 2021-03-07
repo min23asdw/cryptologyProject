@@ -7,7 +7,7 @@
 using namespace std;
 
 string text;
-int p, q, phi, n, key, pbkey, pvkey;
+unsigned int p, q, phi, n, key, pbkey, pvkey;
 vector<int> cn;
 vector<int> tn;
 vector<int> mn;
@@ -19,17 +19,33 @@ void ClearScreen()
     cout << string(100, '\n');
 }
 
-int gcd(int a, int b)
+void reset()
+{
+    cn.clear();
+    tn.clear();
+    mn.clear();
+    e.clear();
+    d.clear();
+    p = 0;
+    q = 0;
+    phi = 0;
+    n = 0;
+    key = 0;
+    pbkey = 0;
+    pvkey = 0;
+}
+
+int gcd(unsigned int a, unsigned int b)
 {
     if (a < b)
     {
-        int temp = a;
+        unsigned int temp = a;
         a = b;
         b = temp;
     }
-    int k;
+    unsigned int k;
 
-    for (int i = 0; i < b; i++)
+    for (unsigned int i = 0; i < b; i++)
     {
         k = b - i;
         if (a % k == 0 && b % k == 0)
@@ -40,14 +56,14 @@ int gcd(int a, int b)
     return 1;
 }
 
-bool prime(int n)
+bool prime(unsigned int n)
 {
     if (n == 1)
     {
         return false;
     }
 
-    for (int i = 2; i < n; i++)
+    for (unsigned int i = 2; i < n; i++)
     {
         if (n % i == 0)
         {
@@ -76,7 +92,7 @@ int mod(int x, int y, int z)
 void find_e()
 {
     int k = 0;
-    for (int i = 2; i < phi; i++)
+    for (unsigned int i = 2; i < phi; i++)
     {
         if (gcd(phi, i) == 1)
         {
@@ -88,7 +104,7 @@ void find_e()
 void find_d()
 {
     int count;
-    for (int i = 0; i < e.size(); i++)
+    for (unsigned int i = 0; i < e.size(); i++)
     {
         count = 0;
         while (true)
@@ -105,14 +121,14 @@ void find_d()
 void show_de()
 {
     cout << "VALUE OF e AND d\nNUMBER\te\td\n";
-    for (int i = 0; i < e.size(); i++)
+    for (unsigned int i = 0; i < e.size(); i++)
     {
         cout << "[" << i + 1 << "]\t" << e[i] << "\t" << d[i] << "\n";
     }
 }
 void encrypt()
 {
-    for (int i = 0; i < tn.size(); i++)
+    for (unsigned int i = 0; i < tn.size(); i++)
     {
         cn.push_back(mod(tn[i], e[key - 1], n));
     }
@@ -122,7 +138,7 @@ void showencryptedtext()
 {
 
     char c[tn.size() + 1];
-    for (int i = 0; i < tn.size(); i++)
+    for (unsigned int i = 0; i < tn.size(); i++)
     {
         c[i] = cn[i];
     }
@@ -131,7 +147,7 @@ void showencryptedtext()
 }
 void decrypt()
 {
-    for (int i = 0; i < cn.size(); i++)
+    for (unsigned int i = 0; i < cn.size(); i++)
     {
         mn.push_back(mod(cn[i], d[key - 1], n));
     }
@@ -141,7 +157,7 @@ void showdecryptedtext()
 {
 
     char c[mn.size() + 1];
-    for (int i = 0; i < mn.size(); i++)
+    for (unsigned int i = 0; i < mn.size(); i++)
     {
         c[i] = mn[i];
     }
@@ -154,6 +170,7 @@ int main()
     string menu;
     do
     {
+
         cout << "RSA (CRYPTOSYSTEM)\n||||||||||||||||||||||\nSELECT YOUR OPTION\n[01] START RSA (CRYPTOSYSTEM)\n[02] EXIT\nINPUT YOUR OPTION : ";
         cin >> menu;
         if (menu == "01")
@@ -166,7 +183,7 @@ int main()
                 {
                     break;
                 }
-                system ("CLS");
+                system("CLS");
                 cout << "TRY AGAIN PLEASE INPUT PRIMENUMBER\nINPUT FIRST PRIMENUMBER : ";
             }
             cout << "INPUT SECOND PRIMENUMBER : ";
@@ -182,7 +199,7 @@ int main()
             cout << "INPUT YOUR MESSAGES : ";
             cin.ignore();
             getline(cin, text);
-            int i;
+            unsigned int i;
             for (i = 0; i <= text.length(); i++)
             {
                 tn.push_back(text[i]);
@@ -208,7 +225,8 @@ int main()
             showencryptedtext();
             decrypt();
             showdecryptedtext();
-            cin >> n;
+            cout << "\n";
+            reset();
         }
         else if (menu == "02")
         {
@@ -216,7 +234,7 @@ int main()
         }
         else
         {
-            system ("CLS");
+            system("CLS");
             cout << "\n#########INCORRECT INPUT#########\n\n";
         }
     } while (true);
