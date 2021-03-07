@@ -35,6 +35,16 @@ void reset()
     pvkey = 0;
 }
 
+bool isValidNum(const string &input)
+{
+    for(unsigned int i = 0; i < input.size(); i++)
+    {
+        if(input[i] > 57 || input[i] < 48)
+            return false;
+    }
+    return true;
+}
+
 int gcd(unsigned int a, unsigned int b)
 {
     if (a < b)
@@ -172,16 +182,21 @@ int main()
     {
 
         cout << "RSA (CRYPTOSYSTEM)\n||||||||||||||||||||||\nSELECT YOUR OPTION\n[01] START RSA (CRYPTOSYSTEM)\n[02] EXIT\nINPUT YOUR OPTION : ";
-        cin >> menu;
+        getline(cin, menu);
         if (menu == "01")
         {
+            string input;
             cout << "INPUT FIRST PRIMENUMBER : ";
             while (true)
             {
-                cin >> p;
-                if (prime(p))
+                getline(cin, input);
+                if(isValidNum(input))
                 {
-                    break;
+                    p = stoi(input);
+                    if (prime(p))
+                    {
+                        break;
+                    }
                 }
                 system("CLS");
                 cout << "TRY AGAIN PLEASE INPUT PRIMENUMBER\nINPUT FIRST PRIMENUMBER : ";
@@ -189,15 +204,18 @@ int main()
             cout << "INPUT SECOND PRIMENUMBER : ";
             while (true)
             {
-                cin >> q;
-                if (prime(q) && p != q)
+                getline(cin, input);
+                if(isValidNum(input))
                 {
-                    break;
+                    q = stoi(input);
+                    if (prime(q) && p != q)
+                    {
+                        break;
+                    }
                 }
                 cout << "TRY AGAIN PLEASE INPUT PRIMENUMBER\nINPUT SECOND PRIMENUMBER : ";
             }
             cout << "INPUT YOUR MESSAGES : ";
-            cin.ignore();
             getline(cin, text);
             unsigned int i;
             for (i = 0; i <= text.length(); i++)
@@ -213,10 +231,15 @@ int main()
             while (true)
             {
                 cout << "\nCHOOSE NUMBER OF KEY : ";
-                cin >> key;
-                if (key > 0 && key <= e.size())
+                getline(cin, input);
+                
+                if(isValidNum(input))
                 {
-                    break;
+                    key = stoi(input);
+                    if (key > 0 && key <= e.size())
+                    {
+                        break;
+                    }
                 }
                 cout << "TRY AGAIN PLEASE CHOOSE NUMBER OF KEY : ";
             }
