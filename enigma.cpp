@@ -522,17 +522,14 @@
            target << text << "\n";
            }
            target.close();
-
-
-
-
            ProcessFile( "manual.txt", "encrypt.txt", "elog.txt" );
+
          }
 
 
 
            reset();
-           ProcessFile( "encrypt.txt", "decrypt.txt", "dlog.txt" );
+           //ProcessFile( "encrypt.txt", "decrypt.txt", "dlog.txt" );
 
 
            cout << "\n\nencrypt data is:  \n" << "\n"<< "\n"<< "\n";
@@ -551,8 +548,76 @@
    Sleep(2000);
            system("cls");
          }
-         else if(Command == "02"){system("cls");cout<<"Not yet ยังไม่เสร็จ"; Sleep(2000);}
+
+
+
+
+
+         else if(Command == "02"){system("cls");       cout << "01 for text file / 02 for manual\n";
+         string Op;
+         cin >> Op;
+                InitEnigma();
+                TryUserSetup();
+
+                if(Op == "01"){
+         system("cls");
+         reset();
+                  ProcessFile( "encrypttext.txt", "decrypt.txt", "dlog.txt" );
+                  cout << "You encrypt data is:  \n" << "\n"<< "\n"<< "\n";
+                  ifstream file;
+
+                  file.open("encrypttext.txt");
+                  string text;
+                  while(getline(file,text)){
+                  cout << text << "\n";
+                  }
+                  file.close();
+
+                }else if(Op == "02"){
+                  system("cls");
+        cout << "You text data is: (type \"#Y\" to decrypt) \n" << "\n";
+                  ofstream target;
+                  target.open("manual.txt");
+                  string text;
+                  while(getline(cin,text)){
+                    if(  text   ==  "#Y"){break;}
+                  target << text << "\n";
+                  }
+                  target.close();
+                  ProcessFile( "manual.txt", "decrypt.txt", "dlog.txt" );
+
+                }
+
+
+
+
+                //  ProcessFile( "encrypttext.txt", "decrypt.txt", "dlog.txt" );
+
+
+                  cout << "\n\ndecrypt data is:  \n" << "\n"<< "\n"<< "\n";
+                  ifstream file;
+
+                  file.open("decrypt.txt");
+                  string text;
+                  while(getline(file,text)){
+                  cout << text << "\n";
+                  }
+                  file.close();
+
+                  //system("showimage.lnk");
+                  show.showImage("display/howitwork.bmp", "howitwork", 420, 209);
+
+          Sleep(2000);
+                  system("cls");}
          if(Command == "03"){system("cls");break;}
+
+
+         std::remove("encrypt.txt");
+         std::remove("decrypt.txt");
+         std::remove("dlog.txt");
+         std::remove("elog.txt");
+         std::remove("manual.txt");
        }
+
         return 0;
       }
