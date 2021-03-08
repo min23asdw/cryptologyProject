@@ -484,26 +484,21 @@ int OpenFiles( char *inFname,
 
 
 
-    void showencrypttext(string outputlocation){
+    void showtext(string sourcetext){
       ifstream file;
 
-      file.open(outputlocation);
+      file.open(sourcetext);
       string text;
+      int i =0;
       while(getline(file,text)){
+        if(i==17){Sleep(10000);}
+        if(i>17){Sleep(100);}
         cout << text << "\n";
+        i++;
       }
       file.close();
     }
-    void showsourcetext(string sourcelocation){
-      ifstream file;
 
-      file.open(sourcelocation);
-      string text;
-      while(getline(file,text)){
-        cout << text << "\n";
-      }
-      file.close();
-    }
 
     int main(){
 
@@ -525,6 +520,7 @@ int OpenFiles( char *inFname,
       if(Command == "01"){
         char* sourcelocation = "plain.txt";
         char* outputlocation = "encrypt.txt";
+        char* steplocation = "elog.txt";
         system("cls");       cout << "01 for text file / 02 for manual\n";
         string Op;
         cin >> Op;
@@ -533,26 +529,29 @@ int OpenFiles( char *inFname,
 
         if(Op == "01"){
           system("cls");
-          ProcessFile(sourcelocation, outputlocation, "elog.txt" );
+          ProcessFile(sourcelocation, outputlocation, steplocation );
           cout << "You text data is:  \n" << "\n"<< "\n"<< "\n";
 
-          showsourcetext(sourcelocation);
+          showtext(sourcelocation);
 
         }else if(Op == "02"){
           system("cls");
 
           cout << "You text data is: (type \"#Y\" to encrypt) \n" << "\n";
           writetext();
-          ProcessFile( "manual.txt", outputlocation, "elog.txt" );
+          ProcessFile( "manual.txt", outputlocation, steplocation );
         }
 
 
 
         reset();
-        cout << "\n\nencrypt data is:  \n" << "\n"<< "\n"<< "\n";
-        showencrypttext(outputlocation);
-        show.showImage("display/howitwork.bmp", "howitwork", 420, 209);
 
+        cout << "\n\nencrypt data is:  \n" << "\n"<< "\n"<< "\n";
+        Sleep(2000);
+        showtext(outputlocation);
+        show.showImage("display/howitwork.bmp", "howitwork", 420, 209);
+        Sleep(2000);
+        showtext(steplocation);
         Sleep(2000);
         system("cls");
       }
@@ -562,6 +561,7 @@ int OpenFiles( char *inFname,
       else if(Command == "02"){
         char* sourcelocation = "encrypttext.txt";
         char* outputlocation = "decrypt.txt";
+        char* steplocation = "dlog.txt";
         system("cls");       cout << "01 for text file / 02 for manual\n";
         string Op;
         cin >> Op;
@@ -571,24 +571,25 @@ int OpenFiles( char *inFname,
         if(Op == "01"){
           system("cls");
           reset();
-          ProcessFile(sourcelocation, outputlocation, "dlog.txt" );
+          ProcessFile(sourcelocation, outputlocation, steplocation );
           cout << "You encrypt data is:  \n" << "\n"<< "\n"<< "\n";
-          showsourcetext(sourcelocation);
+          showtext(sourcelocation);
 
         }else if(Op == "02"){
           system("cls");
           cout << "You text data is: (type \"#Y\" to decrypt) \n" << "\n";
           writetext();
-          ProcessFile( "manual.txt", outputlocation, "dlog.txt" );
+          ProcessFile( "manual.txt", outputlocation, steplocation );
 
 
         }
 
         cout << "\n\ndecrypt data is:  \n" << "\n"<< "\n"<< "\n";
-        showencrypttext(outputlocation);
-
+        Sleep(2000);
+        showtext(outputlocation);
         show.showImage("display/howitwork.bmp", "howitwork", 420, 209);
-
+        Sleep(2000);
+        showtext(steplocation);
         Sleep(2000);
         system("cls");}
         if(Command == "03"){system("cls");break;}
