@@ -573,7 +573,7 @@ int OpenFiles( char *inFname,
           reset();
           ProcessFile(sourcelocation, outputlocation, "dlog.txt" );
           cout << "You encrypt data is:  \n" << "\n"<< "\n"<< "\n";
-          howsourcetext(sourcelocation);
+          showsourcetext(sourcelocation);
 
         }else if(Op == "02"){
           system("cls");
