@@ -2,6 +2,8 @@
 #include <string>
 #include <sstream>
 #include <fstream>
+#include <bitset>
+#include <vector>
 
 using namespace std;
 
@@ -9,6 +11,7 @@ class stegPPM
 {
 private:
     ifstream inFile;
+
 public:
     int width = 0;
     int height = 0;
@@ -27,6 +30,8 @@ public:
     void openFile(string filename);
     void readHeader();
     void readImageData();
+    void writeImageData();
+    void modifyLSB(unsigned char &byte, int changeTo);
 };
 
 void stegPPM::openFile(string filename)
@@ -76,19 +81,52 @@ void stegPPM::readHeader()
 void stegPPM::readImageData()
 {
     inFile.ignore(256, '\n');
-    pixels = new Rgb[width*height];
+    pixels = new Rgb[width * height];
     unsigned char pix[3];
-    for(int i = 0; i < width * height; i++)
+    for (int i = 0; i < width * height; i++)
     {
-        inFile.read(reinterpret_cast<char *> (pix), 3);
+        inFile.read(reinterpret_cast<char *>(pix), 3);
         pixels[i].r = pix[0];
         pixels[i].g = pix[1];
         pixels[i].b = pix[2];
     }
+}
 
-    cout << static_cast<int>(pixels[1].r);
+void stegPPM::writeImageData()
+{
+    size_t size = height * width;
+    ofstream newFile("testImg/newImg.ppm", ios::out | ios::binary);
+    newFile << version << '\n';
+    newFile << width << ' ' << height << '\n';
+    newFile << color << '\n';
 
-    delete [] pixels;
+    vector<unsigned char> temp(size * 3);
+    for (int i = 0; i < size; i++)
+    {
+        modifyLSB(pixels[i].r, 0);
+        modifyLSB(pixels[i].g, 0);
+        modifyLSB(pixels[i].b, 0);
+
+        temp[i * 3] = pixels[i].r;
+        temp[i * 3 + 1] = pixels[i].g;
+        temp[i * 3 + 2] = pixels[i].b;
+    }
+
+    newFile.write(reinterpret_cast<char *>(&temp[0]), size * 3);
+    delete[] pixels;
+
+    if (newFile.fail())
+    {
+        cerr << "Could not write data" << endl;
+    }
+
+    newFile.close();
+}
+
+void stegPPM::modifyLSB(unsigned char &byte, int changeTo)
+{
+    int mask = 1;
+    byte = ((byte & ~mask) | changeTo);
 }
 
 int main()
@@ -107,4 +145,5 @@ int main()
     }
 
     steg.readImageData();
+    steg.writeImageData();
 }
