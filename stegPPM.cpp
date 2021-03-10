@@ -4,6 +4,8 @@
 #include <fstream>
 #include <bitset>
 #include <vector>
+#include <cctype>
+#include "cryptoExceptions.h"
 
 using namespace std;
 
@@ -30,13 +32,17 @@ public:
     void openFile(string filename);
     void readHeader();
     void readImageData();
-    void writeImageData();
+    void writeModifyImageData();
     void modifyLSB(unsigned char &byte, int changeTo);
 };
 
 void stegPPM::openFile(string filename)
 {
     inFile.open(filename, ios::binary);
+    if (inFile.fail())
+    {
+        throw CryptoExceptions("Could not open file");
+    }
 }
 
 void stegPPM::readHeader()
@@ -57,7 +63,8 @@ void stegPPM::readHeader()
             {
                 if (input != "P6")
                 {
-                    cout << "This magic PPM identifier is not supported, or corrupted file." << '\n';
+                    cout << "" << '\n';
+                    throw CryptoExceptions("This magic PPM identifier is not supported, or corrupted file.");
                     break;
                 }
                 else
@@ -70,7 +77,20 @@ void stegPPM::readHeader()
                 else if (height == 0)
                     height = stoi(input);
                 else
+                {
                     color = stoi(input);
+                    if (width == 0 || height == 0)
+                    {
+                        throw CryptoExceptions("Corrupted File");
+                        break;
+                    }
+                }
+            }
+
+            if (!isascii(input[0]))
+            {
+                throw CryptoExceptions("Corrupted File. Header not found.");
+                break;
             }
         }
 
@@ -92,7 +112,7 @@ void stegPPM::readImageData()
     }
 }
 
-void stegPPM::writeImageData()
+void stegPPM::writeModifyImageData()
 {
     size_t size = height * width;
     ofstream newFile("testImg/newImg.ppm", ios::out | ios::binary);
@@ -117,7 +137,7 @@ void stegPPM::writeImageData()
 
     if (newFile.fail())
     {
-        cerr << "Could not write data" << endl;
+        throw CryptoExceptions("Could not write data.");
     }
 
     newFile.close();
@@ -131,19 +151,36 @@ void stegPPM::modifyLSB(unsigned char &byte, int changeTo)
 
 int main()
 {
-    stegPPM steg;
-    steg.openFile("testImg/white.ppm");
-
-    try
+    string filename;
+    while (true)
     {
-        steg.readHeader();
-    }
-    catch (const std::exception &e)
-    {
-        std::cerr << e.what() << '\n';
-        cout << "Corrupted file, or unsupported file type " << '\n';
-    }
+        cout << "------------------------------------------" << '\n';
+        cout << "Steganography is..." << '\n';
+        cout << "------------------------------------------" << '\n';
+        cout << "Currently supporting PPM P6" << '\n';
+        cout << "------------------------------------------" << '\n';
+        cout << "Please input your file name. Your file name should be under the directory of your program." << '\n';
+        cout << "Ex. filename.ppm, testImg/filename.ppm "
+             << "\n\n";
 
-    steg.readImageData();
-    steg.writeImageData();
+        getline(cin, filename);
+
+        stegPPM steg;
+        try
+        {
+            steg.openFile(filename);
+            steg.readHeader();
+            steg.readImageData();
+            steg.writeModifyImageData();
+        }
+        catch (const CryptoExceptions &e)
+        {
+            cerr << '\n'
+                 << e.what() << "\n\n";
+            continue;
+        }
+
+        cout << "------------------------------------------" << '\n';
+        break;
+    }
 }
