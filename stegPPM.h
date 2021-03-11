@@ -28,6 +28,7 @@ public:
     void readHeader();
     void readImageData();
     void writeModifyImageData(string dataTohide);
+    string extractHiddenData(unsigned int length);
     void modifyLSB(unsigned char &byte, unsigned char changeTo);
     unsigned char extractBit(unsigned char data, int position);
 };
@@ -141,6 +142,32 @@ void stegPPM::writeModifyImageData(string dataToHide)
     }
 
     newFile.close();
+}
+
+string stegPPM::extractHiddenData(unsigned int length)
+{
+    string data;
+    unsigned char ch = extractBit(colorChannel[0], 0);
+    int range = (length * 8) >= imgSize ? imgSize - 1 : length * 8;
+
+    int k = 0;
+    for (int i = 1; i <= range; i++)
+    {
+        if (k >= 7)
+        {
+            k = 0;
+            data += (char)ch;
+            cout << bitset<8>(ch) << '\n';
+            ch = extractBit(colorChannel[i], 0);
+        }
+        else
+        {
+            ch = (ch << 1) | extractBit(colorChannel[i], 0);
+            k++;
+        }
+    }
+
+    return data;
 }
 
 void stegPPM::modifyLSB(unsigned char &byte, unsigned char changeTo)

@@ -22,6 +22,7 @@ int main()
         getline(cin, dataToHide);
         cout << "------------------------------------------" << '\n';
 
+        int range = dataToHide.size();
         stegPPM steg;
         try
         {
@@ -29,6 +30,7 @@ int main()
             steg.readHeader();
             steg.readImageData();
             steg.writeModifyImageData(dataToHide);
+            cout << steg.extractHiddenData(range) << '\n';
         }
         catch (const CryptoExceptions &e)
         {
