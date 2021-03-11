@@ -2,9 +2,11 @@
 
 int main()
 {
-    string filename;
     while (true)
     {
+        string filename;
+        string dataToHide;
+
         cout << "------------------------------------------" << '\n';
         cout << "Steganography is..." << '\n';
         cout << "------------------------------------------" << '\n';
@@ -15,6 +17,10 @@ int main()
              << "\n\n";
 
         getline(cin, filename);
+        cout << "------------------------------------------" << '\n';
+        cout << "Please input your text to be hid in the image" << '\n';
+        getline(cin, dataToHide);
+        cout << "------------------------------------------" << '\n';
 
         stegPPM steg;
         try
@@ -22,7 +28,7 @@ int main()
             steg.openFile(filename);
             steg.readHeader();
             steg.readImageData();
-            steg.writeModifyImageData();
+            steg.writeModifyImageData(dataToHide);
         }
         catch (const CryptoExceptions &e)
         {

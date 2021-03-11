@@ -1,10 +1,8 @@
 #include <iostream>
 #include <string>
-#include <sstream>
 #include <fstream>
 #include <bitset>
 #include <vector>
-#include <cctype>
 #include "cryptoExceptions.h"
 
 using namespace std;
@@ -20,20 +18,18 @@ public:
     int color = 0;
     int row = 0;
     int col = 0;
-    struct Rgb
-    {
-        unsigned char r, g, b;
-    };
+    unsigned int imgSize = 0;
 
-    Rgb *pixels = nullptr;
+    vector<unsigned char> colorChannel;
 
     string version = "";
 
     void openFile(string filename);
     void readHeader();
     void readImageData();
-    void writeModifyImageData();
-    void modifyLSB(unsigned char &byte, int changeTo);
+    void writeModifyImageData(string dataTohide);
+    void modifyLSB(unsigned char &byte, unsigned char changeTo);
+    unsigned char extractBit(unsigned char data, int position);
 };
 
 void stegPPM::openFile(string filename)
@@ -94,46 +90,50 @@ void stegPPM::readHeader()
             }
         }
 
-        cout << version << " " << width << " " << height << " " << color;
+        imgSize = width * height;
+        cout << version << " " << width << " " << height << " " << color << '\n';
     }
 }
 
 void stegPPM::readImageData()
 {
     inFile.ignore(256, '\n');
-    pixels = new Rgb[width * height];
-    unsigned char pix[3];
-    for (int i = 0; i < width * height; i++)
+    colorChannel.resize(imgSize * 3);
+    unsigned char pix;
+    for (unsigned int i = 0; i < imgSize * 3; i++)
     {
-        inFile.read(reinterpret_cast<char *>(pix), 3);
-        pixels[i].r = pix[0];
-        pixels[i].g = pix[1];
-        pixels[i].b = pix[2];
+        inFile.read(reinterpret_cast<char *>(&pix), 1);
+        colorChannel[i] = pix;
     }
 }
 
-void stegPPM::writeModifyImageData()
+void stegPPM::writeModifyImageData(string dataToHide)
 {
-    size_t size = height * width;
     ofstream newFile("testImg/newImg.ppm", ios::out | ios::binary);
     newFile << version << '\n';
     newFile << width << ' ' << height << '\n';
     newFile << color << '\n';
 
-    vector<unsigned char> temp(size * 3);
-    for (int i = 0; i < size; i++)
+    unsigned int j = 0;
+    int k = 7;
+    for (unsigned int i = 0; i < imgSize * 3; i++)
     {
-        modifyLSB(pixels[i].r, 0);
-        modifyLSB(pixels[i].g, 0);
-        modifyLSB(pixels[i].b, 0);
+        if (k < 0)
+        {
+            k = 7;
+            j++;
+        }
 
-        temp[i * 3] = pixels[i].r;
-        temp[i * 3 + 1] = pixels[i].g;
-        temp[i * 3 + 2] = pixels[i].b;
+        if (j >= dataToHide.size())
+        {
+            j = 0;
+        }
+
+        modifyLSB(colorChannel[i], extractBit(dataToHide[j], k));
+        k--;
     }
 
-    newFile.write(reinterpret_cast<char *>(&temp[0]), size * 3);
-    delete[] pixels;
+    newFile.write(reinterpret_cast<char *>(&colorChannel[0]), imgSize * 3);
 
     if (newFile.fail())
     {
@@ -143,8 +143,14 @@ void stegPPM::writeModifyImageData()
     newFile.close();
 }
 
-void stegPPM::modifyLSB(unsigned char &byte, int changeTo)
+void stegPPM::modifyLSB(unsigned char &byte, unsigned char changeTo)
 {
     int mask = 1;
     byte = ((byte & ~mask) | changeTo);
+}
+
+unsigned char stegPPM::extractBit(unsigned char data, int position)
+{
+    int mask = 1 << position;
+    return ((data & mask) >> position);
 }
