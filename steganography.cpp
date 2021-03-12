@@ -18,25 +18,23 @@ int main()
 
         getline(cin, filename);
         cout << "------------------------------------------" << '\n';
-        cout << "Please input your text to be hid in the image" << '\n';
+        cout << "Please input your text to be hidden in the image" << '\n';
         getline(cin, dataToHide);
         cout << "------------------------------------------" << '\n';
-
-        int range = dataToHide.size();
+        // filename = "testImg/test.ppm";
+        // int length = dataToHide.size();
+        int length;
         stegPPM steg;
-        try
+
+        string hiddenMsg;
+        if(steg.encode(filename, dataToHide))
         {
-            steg.openFile(filename);
-            steg.readHeader();
-            steg.readImageData();
-            steg.writeModifyImageData(dataToHide);
-            cout << steg.extractHiddenData(range) << '\n';
-        }
-        catch (const CryptoExceptions &e)
-        {
-            cerr << '\n'
-                 << e.what() << "\n\n";
-            continue;
+            cout << "------------------------------------------" << '\n';
+            cout << "Enter length of your hidden message." << '\n';
+            cin >> length;
+            filename = "testImg/img.ppm";
+            hiddenMsg = steg.decodeMsg(filename, length);
+            cout << hiddenMsg << '\n';
         }
 
         cout << "------------------------------------------" << '\n';
