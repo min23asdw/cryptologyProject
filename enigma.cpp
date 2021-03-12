@@ -469,7 +469,7 @@ int OpenFiles( char *inFname,
         SetPlugboard();
         SetRotorsAndReflector();
         fclose( inFp );
-      }
+      } 
     }
     void writetext(){
       ofstream target;
@@ -487,7 +487,7 @@ int OpenFiles( char *inFname,
     void showtext(string sourcetext){
       ifstream file;
 
-      file.open(sourcetext);
+      file.open (sourcetext);
       string text;
       int i =0;
       while(getline(file,text)){
