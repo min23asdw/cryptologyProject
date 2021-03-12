@@ -2,42 +2,94 @@
 
 int main()
 {
+    stegPPM steg;
+
+    int menu = -1;
+    string input = "";
     while (true)
     {
-        string filename;
-        string dataToHide;
+        cout << "Enter 0 to hide a message (Encode)" << '\n';
+        cout << "Enter 1 to reveal a message (Decode)" << '\n';
+        cout << "------------------------------------------" << '\n';
+        getline(cin, input);
+        menu = stoi(input);
 
-        cout << "------------------------------------------" << '\n';
-        cout << "Steganography is..." << '\n';
-        cout << "------------------------------------------" << '\n';
-        cout << "Currently supporting PPM P6" << '\n';
-        cout << "------------------------------------------" << '\n';
-        cout << "Please input your file name. Your file name should be under the directory of your program." << '\n';
-        cout << "Ex. filename.ppm, testImg/filename.ppm "
-             << "\n\n";
-
-        getline(cin, filename);
-        cout << "------------------------------------------" << '\n';
-        cout << "Please input your text to be hidden in the image" << '\n';
-        getline(cin, dataToHide);
-        cout << "------------------------------------------" << '\n';
-        // filename = "testImg/test.ppm";
-        // int length = dataToHide.size();
-        int length;
-        stegPPM steg;
-
-        string hiddenMsg;
-        if(steg.encode(filename, dataToHide))
+        while (menu == 0)
         {
-            cout << "------------------------------------------" << '\n';
-            cout << "Enter length of your hidden message." << '\n';
-            cin >> length;
-            filename = "testImg/img.ppm";
-            hiddenMsg = steg.decodeMsg(filename, length);
-            cout << hiddenMsg << '\n';
-        }
+            string filename = "";
+            string dataToHide = "";
 
-        cout << "------------------------------------------" << '\n';
-        break;
+            while (filename == "")
+            {
+                cout << '\n';
+                cout << "ENCODING------------------------------------------" << '\n';
+                cout << "Please input your image file name to be used as a cover image."
+                     << "\n";
+                cout << "ex. <img.ppm>, <testImg/img.ppm>"
+                     << "\n\n";
+                getline(cin, filename);
+                cout << "------------------------------------------" << '\n';
+            }
+            while (dataToHide == "")
+            {
+                cout << "Please input your message, you wish to hide inside an image..."
+                     << "\n";
+                getline(cin, dataToHide);
+                cout << "------------------------------------------" << '\n';
+            }
+
+            if (steg.encode(filename, dataToHide))
+            {
+                cout << "Encoding Succeed"
+                     << "\n";
+                cout << "------------------------------------------" << '\n';
+                break;
+            }
+            cout << "------------------------------------------" << '\n';
+            break;
+        }
+        while (menu == 1)
+        {
+            string filename = "";
+            int length = 0;
+            string hiddenMsg = "";
+
+            while (filename == "")
+            {
+                cout << '\n';
+                cout << "DECODING------------------------------------------" << '\n';
+                cout << "Please input your image file name to decode a hidden message."
+                     << "\n";
+                cout << "ex. <img.ppm>, <testImg/img.ppm>"
+                     << "\n\n";
+                getline(cin, filename);
+                cout << "------------------------------------------" << '\n';
+            }
+
+            while (length == 0)
+            {
+                cout << "Please input your expected length of the hidden message."
+                     << "\n";
+                getline(cin, input);
+                cout << "------------------------------------------" << '\n';
+                length = stoi(input);
+            }
+
+            hiddenMsg = steg.decodeMsg(filename, length);
+            if (hiddenMsg == "")
+            {
+                cout << "Cannot find hidden message."
+                     << "\n";
+                cout << "------------------------------------------" << '\n';
+                continue;
+            }
+            
+            cout << "Decoding Succeed"
+                 << "\n";
+            cout << "Your hidden message is \n";
+            cout << hiddenMsg << "\n";
+            cout << "------------------------------------------" << '\n';
+            break;
+        }
     }
 }
