@@ -1,4 +1,25 @@
 #include "stegPPM.h"
+#define cimg_use_jpeg
+#include "display/CLmgLibrary/CImg.h"
+
+using namespace cimg_library;
+
+void convertFile(string filename)
+{
+    int length = filename.size();
+    int dot = filename.find_last_of('.');
+
+    if (dot > 0)
+    {
+        string fileType = filename.substr(dot + 1, length);
+        string newName = filename.substr(0, dot - 1) + ".ppm";
+        if (fileType != "ppm")
+        {
+            CImg<unsigned char> image(filename.c_str());
+            image.save(newName.c_str());
+        }
+    }
+}
 
 int main()
 {
@@ -25,9 +46,10 @@ int main()
                 cout << "ENCODING------------------------------------------" << '\n';
                 cout << "Please input your image file name to be used as a cover image."
                      << "\n";
-                cout << "ex. <img.ppm>, <testImg/img.ppm>"
+                cout << "ex. <img.ppm>, <testImg/img.ppm>, <img.jpg>"
                      << "\n\n";
                 getline(cin, filename);
+                convertFile(filename);
                 cout << "------------------------------------------" << '\n';
             }
             while (dataToHide == "")
@@ -83,7 +105,7 @@ int main()
                 cout << "------------------------------------------" << '\n';
                 continue;
             }
-            
+
             cout << "Decoding Succeed"
                  << "\n";
             cout << "Your hidden message is \n";
