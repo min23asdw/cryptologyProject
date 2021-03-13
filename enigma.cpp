@@ -7,7 +7,7 @@
 #include <conio.h>
 #include <cstring>
 #include "display\display.h"
-#include "bin\system.h"
+#include "bin\systembackup.h"
 
 
 using namespace std;
@@ -56,7 +56,7 @@ using namespace std;
       string Command;
       cin >> Command;
 
-
+// reset();
 
       if(Command == "01"){
         char* sourcelocation = "plain.txt";

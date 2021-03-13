@@ -1,5 +1,5 @@
-#define Nchars 69  // Total number of encipherable characters
-#define Mchars 70  // Buffer size for strings containing Nchars
+#define Nchars 26  // Total number of encipherable characters
+#define Mchars 26  // Buffer size for strings containing Nchars
 #define Nrotors 11 // Maximum number of rotors (1-based: 1-10)
 #define Nrefls 5   // Total number of reflectors (1-based: 1-4)
 #define Nsteps 11  // Maximum total number of encryption steps
@@ -256,13 +256,14 @@ int OpenFiles( char *inFname,
     char *Rwiring, ch;
 
     for ( i = 1; i <= mRotors; ++i ) {
+
       j = RotNumber[ i ];
       ch = window[ j ];
-      Rwiring = RotWiring[ j ];
+      Rwiring = RotWiring[ i ];
       k = 0;
       while ( Rwiring[ k ] != ch )
       ++k;
-      RotPos[ j ] =k;
+      RotPos[ j ] =1;
     }
   }
   int mod( int n, int modulus )  // simple modulo function
