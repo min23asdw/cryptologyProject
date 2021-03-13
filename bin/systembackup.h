@@ -7,27 +7,27 @@
 char *ROTOR[Nrotors]  // Wirings of the rotors
 = {
   // input alphabet ("rotor" 0, not used)
-  "abcdefghijklmnopqrstuvwxyz",
+  "abcdefghijklmnopqrstuvwxyz0123456789.,:; ()[]'\"-+/*&~`!@#$%^_={}|\\<>?",
   // rotor 1
-  "ekmflgdqvzntowyhxuspaibrcj",
+  "ekmflgdqvzntowyhxuspaibrcj4.:5,63)-&;' +*7/\"](081[29?><\\|}{=^_%$#@!`~",
   // rotor 2
-  "ajdksiruxblhwtmcqgznpyfvoe",
+  "ajdksiruxblhwtmcqgznpyfvoe093.]8[\"/1,7+':2)6&;(*5- 4?><\\|}{=^_%$#@!`~",
   // rotor 3
-  "bdfhjlcprtxvznyeiwgakmusqo",
+  "bdfhjlcprtxvznyeiwgakmusqo13579,2(['/-&;*48+60.:\"]) ?><\\|}{=^_%$#@!`~",
   // rotor 4
-  "esovpzjayquirhxlnftgkdcmwb",
+  "esovpzjayquirhxlnftgkdcmwb4] -(&90*)\"8[7/,;5'6.32:+1?><\\|}{=^_%$#@!`~",
   // rotor 5
-  "vzbrgityupsdnhlxawmjqofeck",
+  "vzbrgityupsdnhlxawmjqofeck-&1[68'*\"(]3;7,/0+:9) 542.?><\\|}{=^_%$#@!`~",
   // rotor 6
-  "jpgvoumfyqbenhzrdkasxlictw",
+  "jpgvoumfyqbenhzrdkasxlictw9(6- \":5*)14;7&[3.0]/,82'+?><\\|}{=^_%$#@!`~",
   // rotor 7
-  "nzjhgrcxmyswboufaivlpekqdt",
+  "nzjhgrcxmyswboufaivlpekqdt;&976[2/:*]+1 \"508-,(4.)3'?><\\|}{=^_%$#@!`~",
   // rotor 8
-  "fkqhtlxocbjspdzramewniuygv",
+  "fkqhtlxocbjspdzramewniuygv5.)7',/ 219](3&[0:4+;8\"*6-?><\\|}{=^_%$#@!`~",
   // beta rotor
-  "leyjvcnixwpbqmdrtakzgfuhos",
+  "leyjvcnixwpbqmdrtakzgfuhos,4*9-2;8/+(1):3['0.&65\"7 ]?><\\|}{=^_%$#@!`~",
   // gamma rotor
-  "fsokanuerhmbtiycwlqpzxvgjd"
+  "fsokanuerhmbtiycwlqpzxvgjd5] .0;\"4[7:1'8*2+,)(&/-693?><\\|}{=^_%$#@!`~"
 };
 
 // Position in which each rotor causes its left neighbor to turn
@@ -41,24 +41,24 @@ char NOTCH[ Nrotors ]
 char *REFLECTOR[Nrefls]  // Reflectors
 = {
   // input alphabet ("REFLECTOR" 0, not used)
-  "abcdefghijklmnopqrstuvwxyz",
+  "abcdefghijklmnopqrstuvwxyz0123456789.,:; ()[]'\"-+/*&~`!@#$%^_={}|\\<>?",
   // reflector B, thick
-  "yruhqsldpxngokmiebfzcwvjat",
+  "yruhqsldpxngokmiebfzcwvjat*[\"7)],3(/;6 .:8415&2+-90'?<>\\|}{=_^%$#@`!~",
   // reflector C, thick
-  "fvpjiaoyedrzxwgctkuqsbnmhl",
+  "fvpjiaoyedrzxwgctkuqsbnmhl5-(980 *43[&/+62'.\")]1;:7,?<>\\|}{=_^%$#@`!~",
   // reflector B, dunn
-  "enkqeuywjicopblmdxzvfthrgs",
+  "enkqeuywjicopblmdxzvfthrgs4;.)0\"*+982 (1,:3/&-5'7[6]?<>\\|}{=_^%$#@`!~",
   // reflector C, dunn
-  "rdobjntkvehmlfcwzrxgyipsuq"
+  "rdobjntkvehmlfcwzrxgyipsuq[3 19;'.-47:,52+&0/6*8(]\")?<>\\|}{=_^%$#@`!~"
 };
 
 const char *PLUGBOARD  // Default wirings of the plugboard
 =
-"abcdefghijklmnopqrstuvwxyz";
+"abcdefghijklmnopqrstuvwxyz0123456789.,:; ()[]'\"-+/*&~`!@#$%^_={}|\\<>?";
 
 const char *alphabet  // Input alphabet
 =
-"abcdefghijklmnopqrstuvwxyz";
+"abcdefghijklmnopqrstuvwxyz0123456789.,:; ()[]'\"-+/*&~`!@#$%^_={}|\\<>?";
 
 int mRotors,                // Number of rotors placed in the machine
 // (1-based: 1-4)
@@ -192,14 +192,14 @@ int OpenFiles( char *inFname,
 
     fprintf( logFp, "\nRotor wirings:\n" );
     fprintf( logFp, "position rotor ring setting notch sequence\n" );
-    for ( int i = mRotors; i >= 1; --i ){
-    fprintf( logFp, "%8d %5d %12c %5c %s\n",i, RotNumber[ i ], window[ i ],RotNotch[ i ], RotWiring[ i ] );
-  }
+    for ( int i = mRotors; i >= 1; --i )
+    fprintf( logFp, "%8d %5d %12c %5c %s\n",
+    i, RotNumber[ i ], window[ i ],
+    RotNotch[ i ], RotWiring[ i ] );
     fprintf( logFp, "\nreflector %c %s\n", ReflType, reflector );
     fprintf( logFp, "\nrotors:\n" );
     ShowRotors();
   }
-  //lost
   // Initialization from file 'esetup' (step 2)
 
   void SetRotorsAndReflector()
@@ -262,7 +262,7 @@ int OpenFiles( char *inFname,
       k = 0;
       while ( Rwiring[ k ] != ch )
       ++k;
-      RotPos[ j ] =k;
+      RotPos[ j ] = k;
     }
   }
   int mod( int n, int modulus )  // simple modulo function
