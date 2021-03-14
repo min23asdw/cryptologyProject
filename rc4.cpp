@@ -13,10 +13,11 @@ using namespace std;
 vector<unsigned char> S;
 vector<unsigned char> keyStream;
 string key = "";
-string plaintext;
+string plaintext = "";
 char cipherText[256] = { ' ' };
 char decrypted[256] = { ' ' };
 unsigned int temp = 0;
+int checkEncrypt = 0;
 
 
 // Array Initialization
@@ -158,7 +159,8 @@ void pseudoRanGen(string plaintext,vector<unsigned char> S){
 
 // Encyption Algorithm [ Plaintext XOR with Keystream ] Need to run Array Init,KSA,PRGA before this
 void rc4Encrypt(string plaintext,vector<unsigned char> keyStream){
-    cout << "Let's XOR plaintext with keystream" << endl;
+    Sleep(500);
+    cout << "Let's XOR plaintext with keystream" << endl << endl;
     for(int i = 0; i < plaintext.size(); i++){
         cipherText[i] = keyStream[i] ^ plaintext[i];  // Plaintext XOR with Keystream = Ciphertext
     }
@@ -167,6 +169,8 @@ void rc4Encrypt(string plaintext,vector<unsigned char> keyStream){
 
 // Decryption Algorithm [ Ciphertext XOR with Keystream ] Need to run Array Init,KSA,PRGA before this
 void rc4Decrypt(string ciphertext,vector<unsigned char> keyStream){
+        Sleep(500);
+        cout << "Let's XOR ciphertext with keystream" << endl << endl;
         for(int i = 0; i < plaintext.size()+1; i++){
          decrypted[i] = keyStream[i] ^ ciphertext[i]; // Ciphertext XOR with Keystream = Plaintext
     }
@@ -226,8 +230,9 @@ void modeEncrypt(){
         for(int j = 0; j < plaintext.length(); j++){
 		cout << uppercase << hex << setfill('0') << setw(2) << (int)(*(unsigned char*)(&cipherText[j])) << " ";
         }
+        checkEncrypt = 1;
         	Sleep(1000);
-        	gotoxy(5,30);
+        	gotoxy(5,24);
 			color(12);
 			cout << "Press Q to main menu";
 			color(7);
@@ -243,9 +248,21 @@ void modeEncrypt(){
 // Decryption implement
 void modeDecrypt(){
 	color(7);
+    system("cls");
+    if (checkEncrypt == 0)
+    {
+        cout << "You must encrypted the text first !";
+    }
+    else{
+        cout << "[ Decryption ]" << endl << endl;
+        cout << "\nYour Cipher text (hex): " ;
+        for(int j = 0; j < plaintext.length(); j++){
+		cout << uppercase << hex << setfill('0') << setw(2) << (int)(*(unsigned char*)(&cipherText[j])) << " ";
+        }
+        cout << "";
+
+    }
 	char select;
-	system("cls");
-	cout << "In the process of building...";
 	Sleep(1000);
         	gotoxy(5,24);
 			color(12);
