@@ -58,14 +58,13 @@ void keySchedulAlgor(string &key,vector<unsigned char> &S){
     cout << "[+] Your Plain Text: " << plaintext << endl << endl;
     Sleep(250);
     cout << "[+] Enter the secret key: ";
-    cin >> key;
+    getline(cin,key);
     Sleep(250);
     cout << "    Your Secret Key: " << key << endl;
     cout << "    Your Secret Key Length: " << key.length() << endl << endl ;
     Sleep(250);
     cout << "Press anykey to next step.";
-        cin.ignore();
-        cin.get();
+    cin.get();
     Sleep(250);
     system("cls");
     Sleep(500);
@@ -153,11 +152,13 @@ void pseudoRanGen(string plaintext,vector<unsigned char> S){
         for(int i = 0 ; i<keyStream.size(); i++){
             cout << uppercase << hex << setfill('0') << setw(2) << (int)(*(unsigned char*)(&keyStream[i])) << " ";
         }
-    cout << "which are XOR'ed with the text to obtain the encryptedtext or decryptedtext.";
+    Sleep(500);
+    cout << "\n\nwhich are XOR'ed with the text to obtain the encryptedtext or decryptedtext.";
 }
 
 // Encyption Algorithm [ Plaintext XOR with Keystream ] Need to run Array Init,KSA,PRGA before this
 void rc4Encrypt(string plaintext,vector<unsigned char> keyStream){
+    cout << "Let's XOR plaintext with keystream" << endl;
     for(int i = 0; i < plaintext.size(); i++){
         cipherText[i] = keyStream[i] ^ plaintext[i];  // Plaintext XOR with Keystream = Ciphertext
     }
@@ -179,14 +180,13 @@ void modeEncrypt(){
 		system("cls");
 	  	cout << "[ Encryption ]";
         cout << endl << endl << "Input the text: ";
-        cin >> plaintext;
+        getline(cin,plaintext);
         Sleep(250);
         cout << "[+] Your Plain Text: " << plaintext << endl << endl;
         Sleep(250);
         cout << "Let's encrypt your text.." << endl;
         Sleep(500);
         cout << "Press anykey to next step.";
-        cin.ignore();
         cin.get();
         Sleep(500);
         arrayInit(S);
