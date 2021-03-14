@@ -17,7 +17,7 @@ string plaintext = "";
 char cipherText[256] = { ' ' };
 char decrypted[256] = { ' ' };
 unsigned int temp = 0;
-int checkEncrypt = 0;
+bool checkEncrypt = false;
 
 
 // Array Initialization
@@ -120,13 +120,13 @@ void pseudoRanGen(string plaintext,vector<unsigned char> S){
     cout << "[+] incremets i" << endl;
     Sleep(500);
     cout << "[+] looks up the i element of S, S[i], and adds that to j" << endl << endl;
-    Sleep(250);
+    Sleep(500);
     cout << "         " << "i is " << "0" << endl << "         " << "S[i] is " << "?" << " (ASCII) " << endl;
-    Sleep(250);
+    Sleep(500);
     cout << "         " << "j is " << "0" << endl << endl;
     Sleep(500);
     cout << "[+] exchanges the values of S[i] and S[j]\n then uses the sum S[i] + S[j] % 256 as an index to fetch a third element of S (keystream)";
-    Sleep(250);
+    Sleep(500);
     cout << "         " << "The index is " << temp << endl << "         " "add S[temp] to Keystream[" << "0" << "]" << " = " << "?" << " (ASCII) ";
     int i=0,j=0;
     for(int k = 0; k < plaintext.size(); k++){
@@ -230,7 +230,7 @@ void modeEncrypt(){
         for(int j = 0; j < plaintext.length(); j++){
 		cout << uppercase << hex << setfill('0') << setw(2) << (int)(*(unsigned char*)(&cipherText[j])) << " ";
         }
-        checkEncrypt = 1;
+        checkEncrypt = true;
         	Sleep(1000);
         	gotoxy(5,24);
 			color(12);
@@ -249,8 +249,9 @@ void modeEncrypt(){
 void modeDecrypt(){
 	color(7);
     system("cls");
-    if (checkEncrypt == 0)
+    if (checkEncrypt == false)
     {
+        gotoxy(5,2);
         cout << "You must encrypted the text first !";
     }
     else{
@@ -259,7 +260,15 @@ void modeDecrypt(){
         for(int j = 0; j < plaintext.length(); j++){
 		cout << uppercase << hex << setfill('0') << setw(2) << (int)(*(unsigned char*)(&cipherText[j])) << " ";
         }
-        cout << "";
+        Sleep(500);
+        cout << "\nYour keystream (hex) is : ";
+        for(int i = 0 ; i<keyStream.size(); i++){
+            cout << uppercase << hex << setfill('0') << setw(2) << (int)(*(unsigned char*)(&keyStream[i])) << " ";
+        }
+        cout << endl;
+        rc4Decrypt(cipherText,keyStream);
+        Sleep(500);
+        cout << "\nYour Decrypted text (char): " << decrypted;
 
     }
 	char select;
@@ -279,6 +288,11 @@ void modeDecrypt(){
 
 // mainframe
 int main(){
+    HWND console = GetConsoleWindow();
+    RECT ConsoleRect;
+    GetWindowRect(console, &ConsoleRect);
+    MoveWindow(console, ConsoleRect.left, ConsoleRect.top, 1280, 720, TRUE);
+
 	while(true){
     int mode = RC4menu();
     if(mode == 2){
