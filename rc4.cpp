@@ -39,7 +39,7 @@ void arrayInit(vector<unsigned char> &S){
         cout << "The first step is the array initialization. It is a character array of size 256" << endl;
         cout << "for every element of the array, we initialize S[i] to i." << endl << endl;
         cout << "[+] Array initialize.." << endl << endl;
-        cout << "         " << "S[" << i << "]" << " = " << (int)S[i] << endl << endl;
+        cout << "         " << "S[" << i << "]" << " = " << (int)S[i] << " (ASCII) " << endl << endl;
         }
         Sleep(10);
     }
@@ -98,8 +98,8 @@ void keySchedulAlgor(string &key,vector<unsigned char> &S){
         cout << "         " << "Position I is : " << i << endl;
         cout << "         " << "Position J is : " << j << endl;
         cout << "         " << "Swap S[i] with S[j]" << endl;
-        cout << "         " << "Swapping.. " << endl << "         " << "S[" << i << "]" << " = " << (int)S[i] << endl;
-        cout << "         " << "S[" << j << "]" << " = " << (int)S[j] << endl;
+        cout << "         " << "Swapping.. " << endl << "         " << "S[" << i << "]" << " = " << (int)S[i] << " (ASCII) " << endl;
+        cout << "         " << "S[" << j << "]" << " = " << (int)S[j] << " (ASCII) " << endl;
         Sleep(100);
     }
     }
@@ -113,6 +113,21 @@ void keySchedulAlgor(string &key,vector<unsigned char> &S){
 void pseudoRanGen(string plaintext,vector<unsigned char> S){
     system("cls");
     Sleep(500);
+    cout << ": Pseudo Random Generation Algorithm (PRGA) :" << endl << endl;
+    Sleep(500);
+    cout << "For as many iterations as are needed, \nthe PRGA modifies the state and outputs a byte of the keystream." << endl << endl;
+    Sleep(500);
+    cout << "[+] incremets i" << endl;
+    Sleep(500);
+    cout << "[+] looks up the i element of S, S[i], and adds that to j" << endl << endl;
+    Sleep(250);
+    cout << "         " << "i is " << "0" << endl << "         " << "S[i] is " << "?" << " (ASCII) " << endl;
+    Sleep(250);
+    cout << "         " << "j is " << "0" << endl << endl;
+    Sleep(500);
+    cout << "[+] exchanges the values of S[i] and S[j]\n then uses the sum S[i] + S[j] % 256 as an index to fetch a third element of S (keystream)";
+    Sleep(250);
+    cout << "         " << "The index is " << temp << endl << "         " "add S[temp] to Keystream[" << "0" << "]" << " = " << "?" << " (ASCII) ";
     int i=0,j=0;
     for(int k = 0; k < plaintext.size(); k++){
         i = (i+1) % 256;
@@ -120,7 +135,21 @@ void pseudoRanGen(string plaintext,vector<unsigned char> S){
         swap(S[i], S[j]);
          temp = (S[i] + S[j]) % 256;
          keyStream.insert(keyStream.begin()+k,S[temp]); // Create Keystream
+             system("cls");
+             cout << ": Pseudo Random Generation Algorithm (PRGA) :" << endl << endl;
+             cout << "For as many iterations as are needed, \nthe PRGA modifies the state and outputs a byte of the keystream." << endl << endl;
+             cout << "[+] incremets i" << endl;
+             cout << "[+] looks up the i element of S, S[i], and adds that to j" << endl << endl;
+             cout << "         " << "i is " << i << endl << "         " << "S[i] is " << (int)S[i] << " (ASCII) " << endl;
+             cout << "         " << "j is " << j << endl << endl;
+             cout << "[+] exchanges the values of S[i] and S[j]\n    then uses the sum S[i] + S[j] % 256 as an index to fetch a third element of S (keystream)" << endl << endl;
+             cout << "         " << "The index is " << temp << endl << "         " "add S[temp] to Keystream[" << k << "]" << " = " << (int)S[temp] << " (ASCII) ";
+        Sleep(250);
     }
+    Sleep(500);
+    cout << endl << "\nThis produces a stream of Keystream[0],Keystream[1],... " << endl;
+    Sleep(500);
+    cout << "which are XOR'ed with the plaintext to obtain the ciphertext.";
 }
 
 // Encyption Algorithm [ Plaintext XOR with Keystream ] Need to run Array Init,KSA,PRGA before this
@@ -171,11 +200,15 @@ void modeEncrypt(){
         cout << "Press anykey to next step.";
         cin.get();
         pseudoRanGen(plaintext,S);
+        NextAlgor();
+        cout << "Press anykey to next step.";
+        cin.get();
+        system("cls");
         Sleep(500);
         cout << "[ Result ]" << endl << endl;
-        Sleep(250);
+        Sleep(500);
         cout << "Your Plaintext: " << plaintext;
-        Sleep(250);
+        Sleep(500);
         cout << endl << "Your Secret Key: " << key << endl << endl;
         Sleep(500);
         cout << "Your keystream (hex) is : ";
@@ -184,13 +217,13 @@ void modeEncrypt(){
         }
         Sleep(500);
         rc4Encrypt(plaintext,keyStream);
-        Sleep(250);
-        cout << "\nYour Encrypted text (hex): " ;
+        Sleep(500);
+        cout << "\nYour Cipher text (hex): " ;
         for(int j = 0; j < plaintext.length(); j++){
 		cout << uppercase << hex << setfill('0') << setw(2) << (int)(*(unsigned char*)(&cipherText[j])) << " ";
         }
         	Sleep(1000);
-        	gotoxy(5,24);
+        	gotoxy(5,30);
 			color(12);
 			cout << "Press Q to main menu";
 			color(7);
