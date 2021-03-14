@@ -177,7 +177,7 @@ void rc4Decrypt(string ciphertext,vector<unsigned char> keyStream){
 }
 
 
-// Encryption implement
+// Encryption Mode
 void modeEncrypt(){
 		color(7);
 		char select;
@@ -245,7 +245,7 @@ void modeEncrypt(){
 			
 }
 
-// Decryption implement
+// Decryption Mode
 void modeDecrypt(){
 	color(7);
     system("cls");
@@ -286,7 +286,7 @@ void modeDecrypt(){
 }
 
 
-// mainframe
+// main
 int main(){
     HWND console = GetConsoleWindow();
     RECT ConsoleRect;
@@ -296,18 +296,11 @@ int main(){
 	while(true){
     int mode = RC4menu();
     if(mode == 2){
-    	modeEncrypt();
+    	modeEncrypt(); // Run Encrypt Mode
 	}
 	if(mode == 3){
-		modeDecrypt();
+		modeDecrypt(); // Run Decrypt Mode
 	}
     }
     return 0;
-    
-    /*
-        rc4Decrypt(cipherText,keyStream);
-        cout << "\nYour Decrypted text (char): " ;
-        cout << decrypted;
-
-    */
 }
