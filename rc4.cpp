@@ -149,7 +149,11 @@ void pseudoRanGen(string plaintext,vector<unsigned char> S){
     Sleep(500);
     cout << endl << "\nThis produces a stream of Keystream[0],Keystream[1],... " << endl;
     Sleep(500);
-    cout << "which are XOR'ed with the plaintext to obtain the ciphertext.";
+    cout << "Your keystream (hex) is : ";
+        for(int i = 0 ; i<keyStream.size(); i++){
+            cout << uppercase << hex << setfill('0') << setw(2) << (int)(*(unsigned char*)(&keyStream[i])) << " ";
+        }
+    cout << "which are XOR'ed with the text to obtain the encryptedtext or decryptedtext.";
 }
 
 // Encyption Algorithm [ Plaintext XOR with Keystream ] Need to run Array Init,KSA,PRGA before this
