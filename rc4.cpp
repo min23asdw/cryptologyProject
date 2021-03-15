@@ -9,6 +9,26 @@
 
 using namespace std;
 
+class rc4System{
+    vector<unsigned char> S;
+    vector<unsigned char> keyStream;
+    string key = "";
+    string plaintext = "";
+    char cipherText[256] = { ' ' };
+    char decrypted[256] = { ' ' };
+    unsigned int temp = 0;
+    bool checkEncrypt = false;
+    rc4Menu menu;
+    public:
+        void arrayInit(vector<unsigned char> &);
+        void keySchedulAlgor(string &, vector<unsigned char> &);
+        void pseudoRanGen(string,vector<unsigned char>);
+        void rc4Encrypt(string,vector<unsigned char>);
+        void rc4Decrypt(string,vector<unsigned char>);
+        void modeEncrypt();
+        void modeDecrypt();
+};
+/*
 // Global Variables
 vector<unsigned char> S;
 vector<unsigned char> keyStream;
@@ -18,10 +38,11 @@ char cipherText[256] = { ' ' };
 char decrypted[256] = { ' ' };
 unsigned int temp = 0;
 bool checkEncrypt = false;
+rc4Menu menu;*/
 
 
 // Array Initialization
-void arrayInit(vector<unsigned char> &S){
+void rc4System::arrayInit(vector<unsigned char> &S){
         unsigned int i = 0;
         system("cls");
         cout << ": Array Initialization :" << endl << endl;
@@ -51,7 +72,7 @@ void arrayInit(vector<unsigned char> &S){
 }
 
 // Key Scheduling Algorithm (KSA)
-void keySchedulAlgor(string &key,vector<unsigned char> &S){
+void rc4System::keySchedulAlgor(string &key,vector<unsigned char> &S){
     Sleep(500);
     cout << ": Key Scheduling Algorithm (KSA) :" << endl << endl;
     int i = 0, j = 0;
@@ -110,7 +131,7 @@ void keySchedulAlgor(string &key,vector<unsigned char> &S){
 }
 
 // Pseudo Random Generation Algorithm (PRGA)
-void pseudoRanGen(string plaintext,vector<unsigned char> S){
+void rc4System::pseudoRanGen(string plaintext,vector<unsigned char> S){
     system("cls");
     Sleep(500);
     cout << ": Pseudo Random Generation Algorithm (PRGA) :" << endl << endl;
@@ -158,7 +179,7 @@ void pseudoRanGen(string plaintext,vector<unsigned char> S){
 }
 
 // Encyption Algorithm [ Plaintext XOR with Keystream ] Need to run Array Init,KSA,PRGA before this
-void rc4Encrypt(string plaintext,vector<unsigned char> keyStream){
+void rc4System::rc4Encrypt(string plaintext,vector<unsigned char> keyStream){
     Sleep(500);
     cout << "Let's XOR plaintext with keystream" << endl << endl;
     for(int i = 0; i < plaintext.size(); i++){
@@ -168,7 +189,7 @@ void rc4Encrypt(string plaintext,vector<unsigned char> keyStream){
 
 
 // Decryption Algorithm [ Ciphertext XOR with Keystream ] Need to run Array Init,KSA,PRGA before this
-void rc4Decrypt(string ciphertext,vector<unsigned char> keyStream){
+void rc4System::rc4Decrypt(string ciphertext,vector<unsigned char> keyStream){
         Sleep(500);
         cout << "Let's XOR ciphertext with keystream" << endl << endl;
         for(int i = 0; i < plaintext.size()+1; i++){
@@ -178,8 +199,8 @@ void rc4Decrypt(string ciphertext,vector<unsigned char> keyStream){
 
 
 // Encryption Mode
-void modeEncrypt(){
-		color(7);
+void rc4System::modeEncrypt(){
+		menu.color(7);
 		char select;
 		system("cls");
 	  	cout << "[ Encryption ]";
@@ -194,7 +215,7 @@ void modeEncrypt(){
         cin.get();
         Sleep(500);
         arrayInit(S);
-        NextAlgor();
+        menu.NextAlgor();
         cout << ": Key Scheduling Algorithm (KSA) :" << endl << endl;
         Sleep(250);
         cout << "Press anykey to next step.";
@@ -202,13 +223,13 @@ void modeEncrypt(){
         Sleep(500);
         system("cls");
         keySchedulAlgor(key,S);
-        NextAlgor();
+        menu.NextAlgor();
         cout << ": Pseudo Random Generation Algorithm (PRGA) :" << endl << endl;
         Sleep(250);
         cout << "Press anykey to next step.";
         cin.get();
         pseudoRanGen(plaintext,S);
-        NextAlgor();
+        menu.NextAlgor();
         cout << "Press anykey to next step.";
         cin.get();
         system("cls");
@@ -232,10 +253,10 @@ void modeEncrypt(){
         }
         checkEncrypt = true;
         	Sleep(1000);
-        	gotoxy(5,24);
-			color(12);
+        	menu.gotoxy(5,24);
+			menu.color(12);
 			cout << "Press Q to main menu";
-			color(7);
+			menu.color(7);
 			for(int i = 0;;){
 				select = _getch();
 				if(select == 'Q' || select == 'q'){
@@ -246,12 +267,12 @@ void modeEncrypt(){
 }
 
 // Decryption Mode
-void modeDecrypt(){
-	color(7);
+void rc4System::modeDecrypt(){
+	menu.color(7);
     system("cls");
     if (checkEncrypt == false)
     {
-        gotoxy(5,2);
+        menu.gotoxy(5,2);
         cout << "You must encrypted the text first !";
     }
     else{
@@ -273,10 +294,10 @@ void modeDecrypt(){
     }
 	char select;
 	Sleep(1000);
-        	gotoxy(5,24);
-			color(12);
+        	menu.gotoxy(5,24);
+			menu.color(12);
 			cout << "Press Q to main menu";
-			color(7);
+			menu.color(7);
 			for(int i = 0;;){
 				select = _getch();
 				if(select == 'Q' || select == 'q'){
@@ -292,14 +313,15 @@ int main(){
     RECT ConsoleRect;
     GetWindowRect(console, &ConsoleRect);
     MoveWindow(console, ConsoleRect.left, ConsoleRect.top, 1280, 720, TRUE);
-
+    rc4System rc4;
+    rc4Menu menu;
 	while(true){
-    int mode = RC4menu();
+    int mode = menu.RC4menu();
     if(mode == 2){
-    	modeEncrypt(); // Run Encrypt Mode
+    	rc4.modeEncrypt(); // Run Encrypt Mode
 	}
 	if(mode == 3){
-		modeDecrypt(); // Run Decrypt Mode
+		rc4.modeDecrypt(); // Run Decrypt Mode
 	}
     }
     return 0;

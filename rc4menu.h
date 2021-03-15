@@ -3,8 +3,18 @@
 #include<conio.h>
 using namespace std;
 
+class rc4Menu {
+	public :
+	void NextAlgor();
+	void gotoxy(int,int);
+	void color(int);
+	void backToMenu();
+	void whatIsRC4();
+	int RC4menu();
+};
+
 // Delay for Next Algorithm
-void NextAlgor(){
+void rc4Menu::NextAlgor(){
         Sleep(250);
         cout << endl << endl;
         Sleep(250);
@@ -20,19 +30,17 @@ void NextAlgor(){
         Sleep(500);
 }
 
-void color(int color){
+void rc4Menu::color(int color){
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),color);
 }
-void gotoxy(int x,int y){
+void rc4Menu::gotoxy(int x,int y){
     COORD c;
     c.X = x;
     c.Y = y;
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),c);
 }
 
-void backToMenu();
-
-void whatIsRC4(){
+void rc4Menu::whatIsRC4(){
 	int page = 1;
 	char select;
 	system("cls");
@@ -159,7 +167,7 @@ void whatIsRC4(){
 }
 
 
-int RC4menu(){
+int rc4Menu::RC4menu(){
 
 int Set[] = {7,7,7}; // Default colors
 	system("cls");
@@ -221,6 +229,6 @@ int Set[] = {7,7,7}; // Default colors
     }
 }
 
-void backToMenu(){
+void rc4Menu::backToMenu(){
 	RC4menu();
 }
