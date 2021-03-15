@@ -3,7 +3,7 @@
 #include<conio.h>
 using namespace std;
 
-class rc4Menu {
+class rc4Menu { //Menu
 	public :
 	void NextAlgor();
 	void gotoxy(int,int);
