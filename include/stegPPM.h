@@ -17,12 +17,13 @@ private:
     bool openFile(string filename);
     bool readHeader();
     void readImageData();
-    bool writeModifyImageData(string dataTohide);
+    bool writeModifyImageData(string filename, string dataTohide);
     string extractHiddenData(unsigned int length);
 
     void modifyLSB(unsigned char &byte, unsigned char changeTo);
     unsigned char extractBit(unsigned char data, int position);
 
+    const string encodeFolder = "steg";
 public:
     int width = 0;
     int height = 0;
@@ -44,7 +45,7 @@ bool stegPPM::encode(string filename, string message)
 
     if (openAndRead(filename) == true)
     {
-        if (writeModifyImageData(message) == true)
+        if (writeModifyImageData(filename, message) == true)
         {
             inFile.close();
             return true;
@@ -175,11 +176,15 @@ void stegPPM::readImageData()
     cout << bitset<8>(colorChannel[0]) << "\n\n";
 }
 
-bool stegPPM::writeModifyImageData(string dataToHide)
+bool stegPPM::writeModifyImageData(string filename, string dataToHide)
 {
     cout << version << " " << width << " " << height << " " << color << '\n';
 
-    ofstream newFile("testImg/img.ppm", ios::out | ios::binary);
+    int slash = filename.find_last_of('/');
+    string name = filename.substr(slash + 1, filename.size());
+    /*cout << encodeFolder + "/steg_" + name;*/
+
+    ofstream newFile(encodeFolder + "/steg_" + name, ios::out | ios::binary);
     newFile << version << '\n';
     newFile << width << ' ' << height << '\n';
     newFile << color << '\n';

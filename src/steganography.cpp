@@ -1,8 +1,11 @@
 #include "stegPPM.h"
+#include "convertFile.h"
 
 int main()
 {
     stegPPM steg;
+    convertPPM encodeFile;
+    convertPPM decodeFile;
 
     int menu = -1;
     string input = "";
@@ -24,24 +27,26 @@ int main()
                 cout << '\n';
                 cout << "ENCODING------------------------------------------" << '\n';
                 cout << "Please input your image file name to be used as a cover image."
-                     << "\n";
-                cout << "ex. <img.ppm>, <testImg/img.ppm>"
-                     << "\n\n";
+                    << "\n";
+                cout << "ex. <img.ppm>, <testImg/img.ppm>, <img.jpg>"
+                    << "\n\n";
                 getline(cin, filename);
+                encodeFile.convertToPPM(filename);
                 cout << "------------------------------------------" << '\n';
             }
             while (dataToHide == "")
             {
                 cout << "Please input your message, you wish to hide inside an image..."
-                     << "\n";
+                    << "\n";
                 getline(cin, dataToHide);
                 cout << "------------------------------------------" << '\n';
             }
 
             if (steg.encode(filename, dataToHide))
             {
+                encodeFile.saveToSameFormat();
                 cout << "Encoding Succeed"
-                     << "\n";
+                    << "\n";
                 cout << "------------------------------------------" << '\n';
                 break;
             }
@@ -59,17 +64,18 @@ int main()
                 cout << '\n';
                 cout << "DECODING------------------------------------------" << '\n';
                 cout << "Please input your image file name to decode a hidden message."
-                     << "\n";
+                    << "\n";
                 cout << "ex. <img.ppm>, <testImg/img.ppm>"
-                     << "\n\n";
+                    << "\n\n";
                 getline(cin, filename);
+                decodeFile.convertToPPM(filename);
                 cout << "------------------------------------------" << '\n';
             }
 
             while (length == 0)
             {
                 cout << "Please input your expected length of the hidden message."
-                     << "\n";
+                    << "\n";
                 getline(cin, input);
                 cout << "------------------------------------------" << '\n';
                 length = stoi(input);
@@ -79,13 +85,13 @@ int main()
             if (hiddenMsg == "")
             {
                 cout << "Cannot find hidden message."
-                     << "\n";
+                    << "\n";
                 cout << "------------------------------------------" << '\n';
                 continue;
             }
-            
+
             cout << "Decoding Succeed"
-                 << "\n";
+                << "\n";
             cout << "Your hidden message is \n";
             cout << hiddenMsg << "\n";
             cout << "------------------------------------------" << '\n';
