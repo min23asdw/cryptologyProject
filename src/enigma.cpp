@@ -6,8 +6,8 @@
 #include <fstream>
 #include <conio.h>
 #include <cstring>
-#include "display\display.h"
-#include "system.h"
+#include "display.h"
+#include "enigmaSystem.h"
 
 
 using namespace std;

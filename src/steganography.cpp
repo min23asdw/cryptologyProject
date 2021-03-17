@@ -1,5 +1,7 @@
 #include "stegPPM.h"
-#include "convertFile.h"
+#include "convertPPM.h"
+
+using namespace std;
 
 int main()
 {

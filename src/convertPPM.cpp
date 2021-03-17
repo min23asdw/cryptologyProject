@@ -1,24 +1,6 @@
-#define cimg_use_jpeg
-#define cimg_use_png
-#include <CImg.h>
-#include <string>
+#include "convertPPM.h"
 
-using namespace cimg_library;
-
-class convertPPM
-{
-private:
-	string name;
-	string originalName;
-	string orgFileType;
-	string type;
-	string pathPPM;
-	const string ppmFolder = "ppm";
-	const string encodeFolder = "steg";
-public:
-	void convertToPPM(string& filename);
-	void saveToSameFormat();
-};
+using std::string;
 
 void convertPPM::convertToPPM(string& filename)
 {

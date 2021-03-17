@@ -141,16 +141,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\enigma.cpp" />
-    <ClCompile Include="src\rc4.cpp" />
-    <ClCompile Include="src\rsa.cpp" />
-    <ClCompile Include="src\steganography.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="include\convertFile.h" />
+    <ClInclude Include="include\convertPPM.h" />
     <ClInclude Include="include\rc4menu.h" />
     <ClInclude Include="include\rc4system.h" />
-    <ClInclude Include="include\system.h" />
+    <ClInclude Include="include\enigmaSystem.h" />
+    <ClInclude Include="include\rsaSystem.h" />
     <ClInclude Include="include\systembackup.h" />
     <ClInclude Include="include\display\CLmgLibrary\CImg.h" />
     <ClInclude Include="include\display\CLmgLibrary\plugins\add_fileformat.h" />
@@ -199,6 +194,16 @@
     <None Include="include\display\CLmgLibrary\resources\pycimg.py" />
     <None Include="lib\jpeglib\jpeg.pdb" />
     <None Include="lib\libpng\libpng16.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\convertPPM.cpp" />
+    <ClCompile Include="src\enigma.cpp" />
+    <ClCompile Include="src\rc4.cpp" />
+    <ClCompile Include="src\rc4menu.cpp" />
+    <ClCompile Include="src\rc4system.cpp" />
+    <ClCompile Include="src\rsa.cpp" />
+    <ClCompile Include="src\steganography.cpp" />
+    <ClCompile Include="src\stegPPM.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

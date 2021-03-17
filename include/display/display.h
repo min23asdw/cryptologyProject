@@ -1,4 +1,3 @@
-
 #include<iostream>
 #include<string>
 //#include "C:/Users/intel/github/cryptologyProject/CLmgLibrary/CImg.h"
