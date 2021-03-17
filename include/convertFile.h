@@ -1,4 +1,5 @@
 #define cimg_use_jpeg
+#define cimg_use_png
 #include <CImg.h>
 #include <string>
 
@@ -53,6 +54,6 @@ void convertPPM::saveToSameFormat()
 	{
 		CImg<unsigned char> image;
 		image.load((encodeFolder + '/' + "steg_" + name + '.' + type).c_str());
-		image.save((encodeFolder + '/' + "steg_" + originalName).c_str());
+		image.save((encodeFolder + '/' + "steg_" + name + ".bmp").c_str());
 	}
 }

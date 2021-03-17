@@ -140,4 +140,20 @@
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
+  <ItemGroup>
+    <Library Include="lib\jpeglib\jpeg.lib" />
+    <Library Include="lib\libpng\libpng16.lib" />
+    <Library Include="lib\zlib\zlib.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="lib\jpeglib\jpeg.pdb" />
+    <None Include="lib\libpng\libpng16.dll" />
+    <None Include="include\display\CLmgLibrary\resources\compile_win_icl.bat">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="include\display\CLmgLibrary\resources\compile_win_visualcpp.bat">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="include\display\CLmgLibrary\resources\pycimg.py" />
+  </ItemGroup>
 </Project>
