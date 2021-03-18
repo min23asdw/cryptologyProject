@@ -271,7 +271,7 @@ public:
                 {
                     cn.push_back(text[i]);
                 }
-                cout << "INPUT N NUMBER:";
+                cout << "INPUT n NUMBER:";
                 while (true)
                 {
                     getline(cin, input);
