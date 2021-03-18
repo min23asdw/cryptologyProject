@@ -23,10 +23,12 @@ public:
 	UI() {}
 
 	int menu(string header);
+	bool textPage(const vector<string>& textFileName, const vector<string>& heading);
 	void addMenuItems(string name, int color);
 	void gotoxy(int x, int y);
 	void color(int color);
 	void clearScreen();
+	string readFileIntoString(const string& path);
 	COORD GetConsoleCursorPosition(HANDLE hConsoleOutput);
 	void setBeginPos(int x, int y);
 };

@@ -2,6 +2,7 @@
 #include "stegMain.h"
 #include "convertPPM.h"
 #include "stegPPM.h"
+#include "UI.h"
 
 using std::cout;
 using std::cin;
@@ -12,8 +13,33 @@ void stegMain::run()
 	stegPPM steg;
 	convertPPM encodeFile;
 	convertPPM decodeFile;
+	UI stegUI;
+	const vector<string> textFileName
+	{
+		"resources/steg1.txt",
+		"resources/steg2.txt",
+		"resources/steg3.txt"
+	};
 
-	int menu = -1;
+	const vector<string> headings
+	{
+		"Intro",
+		"History",
+		"How it works?"
+	};
+
+	stegUI.addMenuItems("What is steganography?", 7);
+	stegUI.addMenuItems("Encode", 7);
+	stegUI.addMenuItems("Decode", 7);
+
+	int menuRes = stegUI.menu("Steganography");
+
+	if (menuRes == 0)
+	{
+		stegUI.textPage(textFileName, headings);
+	}
+
+	/*int menu = -1;
 	string input = "";
 	while (true)
 	{
@@ -103,5 +129,5 @@ void stegMain::run()
 			cout << "------------------------------------------" << '\n';
 			break;
 		}
-	}
+	}*/
 }

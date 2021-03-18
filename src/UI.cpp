@@ -1,4 +1,7 @@
 #include "UI.h"
+#include <fstream>
+#include <sstream>
+#include <iomanip> 
 
 using namespace std;
 
@@ -55,6 +58,52 @@ void UI::addMenuItems(string name = "", int color = 7)
 	menuItems.push_back(item);
 }
 
+bool UI::textPage(const vector<string>& textFileName, const vector<string>& heading)
+{
+	int pageNum = textFileName.size();
+
+	int page = 0;
+	char select;
+	system("cls");
+	color(7);
+	gotoxy(5, 2);
+
+	vector<string> contents;
+	for (int i = 0; i < pageNum; i++)
+	{
+		contents.push_back(readFileIntoString(textFileName[i]));
+	}
+
+	while (true) {
+		system("cls");
+		gotoxy(5, 2);
+		cout << heading[page] << "\n\n";
+		cout << contents[page] << "\n\n";
+		color(12);
+		cout << "Page " << page + 1 << " of " << pageNum << " | (Press left arrow to back , right arrow to next , Q to main menu)";
+		color(7);
+
+		select = _getch();
+
+		if (select == 75 && page > 0) // 72 = up arrow key
+		{
+			page--;
+		}
+
+		if (select == 77 && page < pageNum - 1) // 80 = down arrow key
+		{
+			page++;
+		}
+
+		if (select == 'Q' || select == 'q') {
+			//backToMenu();
+			break;
+		}
+	}
+
+	return false;
+}
+
 
 void UI::gotoxy(int x, int y)
 {
@@ -83,6 +132,19 @@ void UI::clearScreen()
 	color(7);
 }
 
+string UI::readFileIntoString(const string& path) {
+	auto ss = ostringstream{};
+	ifstream input_file;
+	input_file.open(path);
+	if (!input_file.is_open()) {
+		cerr << "Could not open the file - '"
+			<< path << "'" << endl;
+		exit(EXIT_FAILURE);
+	}
+	ss << input_file.rdbuf();
+	input_file.close();
+	return ss.str();
+}
 
 COORD UI::GetConsoleCursorPosition(HANDLE hConsoleOutput)
 {
