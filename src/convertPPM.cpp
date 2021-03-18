@@ -1,6 +1,8 @@
 #include "convertPPM.h"
+#include <iostream>
 
 using std::string;
+using std::cout;
 
 void convertPPM::convertToPPM(string& filename)
 {
@@ -10,8 +12,11 @@ void convertPPM::convertToPPM(string& filename)
 
 	if (dot > 0)
 	{
-		orgFileType = filename.substr(dot + 1, length);
-		name = filename.substr(slash + 1, dot);
+		dot++;
+		slash++;
+		orgFileType = filename.substr(dot, length);
+		name = filename.substr(slash, dot);
+		
 		string newName = name + ".ppm";
 
 		if (orgFileType != "ppm")
@@ -22,6 +27,7 @@ void convertPPM::convertToPPM(string& filename)
 			type = "ppm";
 			filename = ppmFolder + '/' + newName;
 			pathPPM = filename;
+			cout << "\nYour file will be converted to PPM-P6, saved at: " << pathPPM << '\n';
 		}
 		originalName = name + '.' + orgFileType;
 	}
@@ -37,5 +43,7 @@ void convertPPM::saveToSameFormat()
 		CImg<unsigned char> image;
 		image.load((encodeFolder + '/' + "steg_" + name + '.' + type).c_str());
 		image.save((encodeFolder + '/' + "steg_" + name + ".bmp").c_str());
+		cout << "Will convert from " << encodeFolder + '/' + "steg_" + name + '.' + type << " to "
+			<< encodeFolder + '/' + "steg_" + name + ".bmp" << '\n';
 	}
 }

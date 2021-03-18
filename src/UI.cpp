@@ -45,6 +45,7 @@ int UI::menu(string header)
 
 		if (select == '\r') //carriage return = enter key
 		{
+			menuItems[counter].color = inactiveColor;
 			return counter;
 		}
 	}
@@ -101,7 +102,7 @@ bool UI::textPage(const vector<string>& textFileName, const vector<string>& head
 		}
 	}
 
-	return false;
+	return true;
 }
 
 

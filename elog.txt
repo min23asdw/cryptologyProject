@@ -1,0 +1,28 @@
+Plugboard mappings:
+abcdefghijklmnopqrstuvwxyz
+abcdefghijklmnopqrstuvwxyz
+
+Rotor wirings:
+position rotor ring setting notch sequence
+       3     3            a     v bdfhjlcprtxvznyeiwgakmusqo
+       2     2            a     e ajdksiruxblhwtmcqgznpyfvoe
+       1     1            a     q ekmflgdqvzntowyhxuspaibrcj
+
+reflector  yruhqsldpxngokmiebfzcwvjat
+
+rotors:
+3: b->dfhjlcprtxvznyeiwgakmusqo
+2: a->jdksiruxblhwtmcqgznpyfvoe
+1: e->kmflgdqvzntowyhxuspaibrcj
+
+
+Encryption
+
+a a m    f -> f -> i -> x -> y -> a -> y -> c -> a -> a
+a a f    u -> u -> e -> k -> k -> n -> v -> q -> d -> d
+a a l    c -> c -> l -> g -> q -> e -> a -> s -> v -> v
+a a g    k -> k -> r -> r -> h -> d -> p -> m -> m -> m
+a a d    y -> y -> h -> h -> u -> c -> z -> w -> g -> g
+a a q    o -> o -> v -> j -> w -> v -> l -> y -> w -> w
+a d v    u -> u -> m -> z -> c -> u -> h -> a -> n -> n
+

@@ -18,27 +18,31 @@ int main()
 	mainUI.addMenuItems("RSA", 7);
 	mainUI.addMenuItems("Steganography", 7);
 
-	int menuRes = mainUI.menu("Main Menu");
-	mainUI.clearScreen();
-
-	if (menuRes == 0)
+	while (true)
 	{
-		enigma.run();
+		int menuRes = mainUI.menu("Main Menu");
+		mainUI.clearScreen();
+
+		if (menuRes == 0)
+		{
+			enigma.run();
+		}
+
+		if (menuRes == 1)
+		{
+			rc4.run();
+		}
+
+		if (menuRes == 2)
+		{
+
+		}
+
+		if (menuRes == 3)
+		{
+			steg.run();
+		}
 	}
 
-	if (menuRes == 1)
-	{
-		rc4.run();
-	}
-
-	if (menuRes == 2)
-	{
-
-	}
-
-	if (menuRes == 3)
-	{
-		steg.run();
-	}
 	return 0;
 }

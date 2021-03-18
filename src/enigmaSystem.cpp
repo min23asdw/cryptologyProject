@@ -1,4 +1,5 @@
 #include "enigmaSystem.h"
+#include <iostream>
 
 int Enigma::index(char c)
 {
@@ -354,6 +355,7 @@ void Enigma::InitEnigma() // Default initialization
 	}
 	reflector = REFLECTOR[1];
 	ReflType = 1;
+	return;
 }
 
 
@@ -361,10 +363,11 @@ void Enigma::TryUserSetup()
 // Attempt initialization from user file
 {
 
-	if ((inFp = fopen("esetup", "rt"))
+	if ((inFp = fopen("esetup.txt", "rt"))
 		!=
 		NULL)
 	{
+		std::cout << "esetup loaded\n";
 		SetPlugboard();
 		SetRotorsAndReflector();
 		fclose(inFp);

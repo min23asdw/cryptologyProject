@@ -118,7 +118,8 @@ bool stegPPM::readHeader()
         }
 
         imgSize = width * height;
-        cout << version << " " << width << " " << height << " " << color << '\n';
+        cout << "PPM Header" << '\n';
+        cout << version << " " << width << " " << height << " " << color << "\n\n";
         return true;
     }
     return false;
@@ -139,16 +140,14 @@ void stegPPM::readImageData()
         inFile.read(reinterpret_cast<char*>(&pix), 1);
         colorChannel[i] = pix;
     }
-    cout << bitset<8>(colorChannel[0]) << "\n\n";
 }
 
 bool stegPPM::writeModifyImageData(string filename, string dataToHide)
 {
-    cout << version << " " << width << " " << height << " " << color << '\n';
+    //cout << version << " " << width << " " << height << " " << color << '\n';
 
     int slash = filename.find_last_of('/');
     string name = filename.substr(slash + 1, filename.size());
-    /*cout << encodeFolder + "/steg_" + name;*/
 
     ofstream newFile(encodeFolder + "/steg_" + name, ios::out | ios::binary);
     newFile << version << '\n';
@@ -157,6 +156,11 @@ bool stegPPM::writeModifyImageData(string filename, string dataToHide)
 
     unsigned int j = 0;
     int k = 7;
+    cout << "We will change the last bit (least significant bit) of each color channel to each digit of binary from message, we wish to hide." << '\n';
+    cout << "This operation will go through every pixels of the image. If it reaches the end of the message, it will continue the operation by going back to the beginning of the message.\n\n";
+    cout << "This technique is used for watermarking to prevent copyright infringement.\n";
+    cout << "If the image is cropped, then the data will still remain.\n";
+
     for (unsigned int i = 0; i < imgSize * 3; i++)
     {
         if (k < 0)
@@ -182,6 +186,8 @@ bool stegPPM::writeModifyImageData(string filename, string dataToHide)
         return false;
     }
 
+    cout << "\nEncoded Image was saved at: " << encodeFolder + "/steg_" + name << '\n';
+
     newFile.close();
     return true;
 }
@@ -190,24 +196,26 @@ string stegPPM::extractHiddenData(unsigned int length)
 {
     string data;
     unsigned char ch = extractBit(colorChannel[0], 0);
+    //cout << "Bits from each color channel (RGB) representing color value: " << bitset<8>(colorChannel[0]) << '\n';
     int range = (length * 8) >= imgSize ? imgSize - 1 : length * 8;
 
     int k = 0;
     for (int i = 1; i <= range; i++)
     {
+        cout << "Bits from each color channel (RGB) representing color value: " << bitset<8>(colorChannel[i-1]) << '\n';
+
         if (k >= 7)
         {
             cout << '\n';
             k = 0;
             data += (char)ch;
-            cout << bitset<8>(ch) << '\n';
+            cout << "8-bit number from the last bit of each color value, representing each character of the hidden message: \n" << bitset<8>(ch) << " --> " << (char)ch << '\n';
             ch = extractBit(colorChannel[i], 0);
             cout << '\n';
         }
         else
         {
             ch = (ch << 1) | extractBit(colorChannel[i], 0);
-            cout << bitset<8>(colorChannel[i]) << '\n';
             k++;
         }
     }
