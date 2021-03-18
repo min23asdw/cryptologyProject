@@ -2,6 +2,7 @@
 #include "rc4Main.h"
 #include "stegMain.h"
 #include "enigmaMain.h"
+#include "rsaSystem.h"
 
 using namespace std;
 
@@ -12,6 +13,7 @@ int main()
 	rc4Main rc4;
 	stegMain steg;
 	enigmaMain enigma;
+	RSA rsa;
 
 	mainUI.addMenuItems("Enigma", 7);
 	mainUI.addMenuItems("RC4", 7);
@@ -35,7 +37,7 @@ int main()
 
 		if (menuRes == 2)
 		{
-
+			rsa.run();
 		}
 
 		if (menuRes == 3)

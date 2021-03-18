@@ -12,7 +12,7 @@ class RSA
 {
 public:
 	string text;
-	unsigned int p, q, phi, n, key, pbkey, pvkey;
+	unsigned int p, q, phi, n, key, pbkey, pvkey, D;
 	vector<int> cn;
 	vector<int> tn;
 	vector<int> mn;
@@ -20,7 +20,6 @@ public:
 	vector<int> d;
 
 private:
-	void ClearScreen();
 	void reset();
 	bool isValidNum(const string& input);
 	int gcd(unsigned int a, unsigned int b);
@@ -32,6 +31,9 @@ private:
 	void encrypt();
 	void showencryptedtext();
 	void decrypt();
+	void mdecrypt();
 	void showdecryptedtext();
+
+public:
 	void run();
 };

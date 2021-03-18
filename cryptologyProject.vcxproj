@@ -207,6 +207,7 @@
     <ClCompile Include="src\rc4menu.cpp" />
     <ClCompile Include="src\rc4system.cpp" />
     <ClCompile Include="include\steg\stegMain.h" />
+    <ClCompile Include="src\rsa.cpp" />
     <ClCompile Include="src\steg.cpp" />
     <ClCompile Include="src\stegPPM.cpp" />
     <ClCompile Include="src\UI.cpp" />

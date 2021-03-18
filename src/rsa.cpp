@@ -2,11 +2,6 @@
 
 using namespace std;
 
-void RSA::ClearScreen()
-{
-	cout << string(100, '\n');
-}
-
 void RSA::reset()
 {
 	cn.clear();
@@ -132,15 +127,16 @@ void RSA::encrypt()
 	}
 }
 
-/*void RSA::showencryptedtext()
+void RSA::showencryptedtext()
 {
+	string c = "";
+	char temp[1];
 
-	char c[tn.size() + 1];
-	for (unsigned int i = 0; i < tn.size(); i++)
+	for (unsigned int i = 0; i < cn.size(); i++)
 	{
-		c[i] = cn[i];
+		temp[0] = cn[i];
+		c = c + temp[0];
 	}
-	c[tn.size() + 1] = '\0';
 	cout << "ENCRYPTED MESSAGES : " << c << "\n";
 }
 void RSA::decrypt()
@@ -151,17 +147,27 @@ void RSA::decrypt()
 	}
 }
 
+void RSA::mdecrypt()
+{
+	for (unsigned int i = 0; i < cn.size(); i++)
+	{
+		mn.push_back(mod(cn[i], D, n));
+	}
+}
+
 void RSA::showdecryptedtext()
 {
-
-	char c[mn.size() + 1];
+	string c = "";
+	// char c[mn.size() + 1];
+	char temp[1];
 	for (unsigned int i = 0; i < mn.size(); i++)
 	{
-		c[i] = mn[i];
+		temp[0] = mn[i];
+		c = c + temp[0];
 	}
-	c[mn.size() + 1] = '\0';
+	// c[mn.size() + 1] = '\0';
 	cout << "DECRYPTED MESSAGES : " << c << "\n";
-}*/
+}
 
 void RSA::run()
 {
@@ -169,7 +175,7 @@ void RSA::run()
 	do
 	{
 
-		cout << "RSA (CRYPTOSYSTEM)\n||||||||||||||||||||||\nSELECT YOUR OPTION\n[01] START RSA (CRYPTOSYSTEM)\n[02] EXIT\nINPUT YOUR OPTION : ";
+		cout << "\tRSA\n||||||||||||||||||||||\nSELECT YOUR OPTION\n[01]ENCRYPT RSA \n[02]DECRYPT RSA \n[03]EXIT\nINPUT YOUR OPTION : ";
 		getline(cin, menu);
 		if (menu == "01")
 		{
@@ -198,7 +204,10 @@ void RSA::run()
 					q = stoi(input);
 					if (prime(q) && p != q)
 					{
-						break;
+						if (p > 20 || q > 20)
+						{
+							break;
+						}
 					}
 				}
 				cout << "TRY AGAIN PLEASE INPUT PRIMENUMBER\nINPUT SECOND PRIMENUMBER : ";
@@ -233,13 +242,49 @@ void RSA::run()
 			}
 
 			encrypt();
-			//showencryptedtext();
-			//decrypt();
-			//showdecryptedtext();
+			showencryptedtext();
+			decrypt();
+			showdecryptedtext();
 			cout << "\n";
 			reset();
 		}
 		else if (menu == "02")
+		{
+			string input;
+			cout << "INPUT ENCRYPTED TEXT :";
+			getline(cin, text);
+			for (unsigned int i = 0; i <= text.length(); i++)
+			{
+				cn.push_back(text[i]);
+			}
+			cout << "INPUT n NUMBER:";
+			while (true)
+			{
+				getline(cin, input);
+				if (isValidNum(input))
+				{
+					n = stoi(input);
+					break;
+				}
+				cout << "TRY AGAIN \n PLEASE INPUT n: ";
+			}
+			cout << "INPUT d (PRIVATE KEY) :";
+			while (true)
+			{
+				getline(cin, input);
+				if (isValidNum(input))
+				{
+					D = stoi(input);
+					break;
+				}
+				cout << "TRY AGAIN \n PLEASE INPUT d: ";
+			}
+			mdecrypt();
+			showdecryptedtext();
+			cout << "\n";
+			reset();
+		}
+		else if (menu == "03")
 		{
 			break;
 		}
@@ -250,9 +295,3 @@ void RSA::run()
 		}
 	} while (true);
 }
-
-//int main()
-//{
-//    RSA x;
-//    x.run();
-//}
