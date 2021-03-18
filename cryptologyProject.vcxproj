@@ -196,8 +196,15 @@
     <None Include="lib\libpng\libpng16.dll" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\convertPPM.cpp" />
     <ClCompile Include="src\enigma.cpp" />
     <ClCompile Include="src\enigmaSystem.cpp" />
+    <ClCompile Include="src\rc4.cpp" />
+    <ClCompile Include="src\rc4menu.cpp" />
+    <ClCompile Include="src\rc4system.cpp" />
+    <ClCompile Include="src\rsa.cpp" />
+    <ClCompile Include="src\steganography.cpp" />
+    <ClCompile Include="src\stegPPM.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
