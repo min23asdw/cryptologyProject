@@ -9,7 +9,7 @@ class RSA
 {
 public:
     string text;
-    unsigned int p, q, phi, n, key, pbkey, pvkey;
+    unsigned int p, q, phi, n, key, pbkey, pvkey, D;
     vector<int> cn;
     vector<int> tn;
     vector<int> mn;
@@ -165,7 +165,7 @@ public:
     {
         for (unsigned int i = 0; i < cn.size(); i++)
         {
-            mn.push_back(mod(cn[i], d[key - 1], n));
+            mn.push_back(mod(cn[i], D, n));
         }
     }
 
@@ -189,7 +189,7 @@ public:
         do
         {
 
-            cout << "RSA (CRYPTOSYSTEM)\n||||||||||||||||||||||\nSELECT YOUR OPTION\n[01] START RSA (CRYPTOSYSTEM)\n[02] EXIT\nINPUT YOUR OPTION : ";
+            cout << "\tRSA\n||||||||||||||||||||||\nSELECT YOUR OPTION\n[01]ENCRYPT RSA \n[02]DECRYPT RSA \n[03]EXIT\nINPUT YOUR OPTION : ";
             getline(cin, menu);
             if (menu == "01")
             {
@@ -264,14 +264,43 @@ public:
             }
             else if (menu == "02")
             {
-                break;
+                string input;
+                cout << "INPUT ENCRYPTED TEXT :";
+                getline(cin, text);
+                for (unsigned int i = 0; i <= text.length(); i++)
+                {
+                    cn.push_back(text[i]);
+                }
+                cout << "INPUT N NUMBER:";
+                while (true)
+                {
+                    getline(cin, input);
+                    if (isValidNum(input))
+                    {
+                        n = stoi(input);
+                        break;
+                    }
+                    cout << "TRY AGAIN \n PLEASE INPUT n: ";
+                }
+                cout << "INPUT d (PRIVATE KEY) :";
+                while (true)
+                {
+                    getline(cin, input);
+                    if (isValidNum(input))
+                    {
+                        D = stoi(input);
+                        break;
+                    }
+                    cout << "TRY AGAIN \n PLEASE INPUT d: ";
+                }
+                mdecrypt();
+                showdecryptedtext();
+                cout << "\n";
+                reset();
             }
             else if (menu == "03")
             {
-                string input;
-                cout << "INPUT ENCRYPTED TEXT :";
-                getline(cin, inpiut);
-                                
+                break;
             }
             else
             {
