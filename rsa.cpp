@@ -218,7 +218,7 @@ public:
                         q = stoi(input);
                         if (prime(q) && p != q)
                         {
-                            if (p > 11 || q > 11)
+                            if (p > 20 || q > 20)
                             {
                                 break;
                             }
