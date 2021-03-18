@@ -92,7 +92,7 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(ProjectDir)lib\zlib;$(ProjectDir)lib\libpng;$(ProjectDir)lib\jpeglib;$(ProjectDir)include\display\CLmgLibrary;$(ProjectDir)include;$(ProjectDir)include\display;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(ProjectDir)lib\zlib;$(ProjectDir)lib\libpng;$(ProjectDir)lib\jpeglib;$(ProjectDir)include\display\CLmgLibrary;$(ProjectDir)include\;$(ProjectDir)include\display;$(ProjectDir)include\steg;$(ProjectDir)include\rsa;$(ProjectDir)include\rc4;$(ProjectDir)include\enigma</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <TargetMachine>MachineX86</TargetMachine>
@@ -122,7 +122,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(ProjectDir)lib\zlib;$(ProjectDir)lib\libpng;$(ProjectDir)lib\jpeglib;$(ProjectDir)include\display\CLmgLibrary;$(ProjectDir)include;$(ProjectDir)include\display;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(ProjectDir)lib\zlib;$(ProjectDir)lib\libpng;$(ProjectDir)lib\jpeglib;$(ProjectDir)include\display\CLmgLibrary;$(ProjectDir)include\;$(ProjectDir)include\display;$(ProjectDir)include\steg;$(ProjectDir)include\rsa;$(ProjectDir)include\rc4;$(ProjectDir)include\enigma</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
@@ -141,12 +141,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="include\convertPPM.h" />
-    <ClInclude Include="include\rc4menu.h" />
-    <ClInclude Include="include\rc4system.h" />
-    <ClInclude Include="include\enigmaSystem.h" />
-    <ClInclude Include="include\rsaSystem.h" />
-    <ClInclude Include="include\systembackup.h" />
+    <ClInclude Include="include\enigma\enigmaMain.h" />
+    <ClInclude Include="include\steg\convertPPM.h" />
+    <ClInclude Include="include\display\UI.h" />
+    <ClInclude Include="include\rc4\rc4menu.h" />
+    <ClInclude Include="include\rc4\rc4system.h" />
+    <ClInclude Include="include\enigma\enigmaSystem.h" />
+    <ClInclude Include="include\rsa\rsaSystem.h" />
+    <ClInclude Include="include\enigma\systembackup.h" />
     <ClInclude Include="include\display\CLmgLibrary\CImg.h" />
     <ClInclude Include="include\display\CLmgLibrary\plugins\add_fileformat.h" />
     <ClInclude Include="include\display\CLmgLibrary\plugins\bayer.h" />
@@ -166,7 +168,7 @@
     <ClInclude Include="include\display\CLmgLibrary\plugins\vrml.h" />
     <ClInclude Include="include\display\CLmgLibrary\plugins\vtk.h" />
     <ClInclude Include="include\display\display.h" />
-    <ClInclude Include="include\stegPPM.h" />
+    <ClInclude Include="include\steg\stegPPM.h" />
     <ClInclude Include="lib\jpeglib\cderror.h" />
     <ClInclude Include="lib\jpeglib\cdjpeg.h" />
     <ClInclude Include="lib\jpeglib\jconfig.h" />
@@ -199,12 +201,15 @@
     <ClCompile Include="src\convertPPM.cpp" />
     <ClCompile Include="src\enigma.cpp" />
     <ClCompile Include="src\enigmaSystem.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="include\rc4\rc4Main.h" />
     <ClCompile Include="src\rc4.cpp" />
     <ClCompile Include="src\rc4menu.cpp" />
     <ClCompile Include="src\rc4system.cpp" />
-    <ClCompile Include="src\rsa.cpp" />
-    <ClCompile Include="src\steganography.cpp" />
+    <ClCompile Include="include\steg\stegMain.h" />
+    <ClCompile Include="src\steg.cpp" />
     <ClCompile Include="src\stegPPM.cpp" />
+    <ClCompile Include="src\UI.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

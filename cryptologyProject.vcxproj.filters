@@ -15,12 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\stegPPM.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\systembackup.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\display\CLmgLibrary\plugins\add_fileformat.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -114,19 +108,31 @@
     <ClInclude Include="lib\jpeglib\transupp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\rc4menu.h">
+    <ClInclude Include="include\display\UI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\rc4system.h">
+    <ClInclude Include="include\steg\convertPPM.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\enigmaSystem.h">
+    <ClInclude Include="include\steg\stegPPM.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\rsaSystem.h">
+    <ClInclude Include="include\enigma\enigmaSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\convertPPM.h">
+    <ClInclude Include="include\rc4\rc4menu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rc4\rc4system.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rsa\rsaSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\enigma\systembackup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\enigma\enigmaMain.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -152,31 +158,40 @@
     <None Include="include\display\CLmgLibrary\resources\pycimg.py" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\enigma.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\enigmaSystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\convertPPM.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\rc4.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\rc4menu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\rc4system.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\rsa.cpp">
+    <ClCompile Include="src\UI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\steganography.cpp">
+    <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\stegPPM.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\convertPPM.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="include\steg\stegMain.h">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="include\rc4\rc4Main.h">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\enigma.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\enigmaSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\steg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\rc4.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

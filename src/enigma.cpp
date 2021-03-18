@@ -8,11 +8,12 @@
 #include <cstring>
 #include "display.h"
 #include "enigmaSystem.h"
+#include "enigmaMain.h"
 
 
 using namespace std;
 
-    void writetext(){
+    void enigmaMain::writetext(){
       ofstream target;
       target.open("manual.txt");
       string text;
@@ -25,7 +26,7 @@ using namespace std;
 
 
 
-    void showtext(string sourcetext){
+    void enigmaMain::showtext(string sourcetext){
       ifstream file;
 
       file.open (sourcetext);
@@ -41,7 +42,7 @@ using namespace std;
     }
 
 
-    int main(){
+    void enigmaMain::run(){
 
       HWND console = GetConsoleWindow();
       RECT ConsoleRect;
@@ -50,6 +51,7 @@ using namespace std;
       MoveWindow(console, ConsoleRect.left, ConsoleRect.top, 1280, 720, TRUE);
 
       display show;
+      Enigma enigma;
 
       while(true){ system("cls");
       cout << "01 for encrypt / 02 for decrypt(X) / 03 for exit to main\n";
@@ -65,12 +67,12 @@ using namespace std;
         system("cls");       cout << "01 for text file / 02 for manual\n";
         string Op;
         cin >> Op;
-        InitEnigma();
-        TryUserSetup();
+        enigma.InitEnigma();
+        enigma.TryUserSetup();
 
         if(Op == "01"){
           system("cls");
-          ProcessFile(sourcelocation, outputlocation, steplocation );
+          enigma.ProcessFile(sourcelocation, outputlocation, steplocation );
           cout << "You text data is:  \n" << "\n"<< "\n"<< "\n";
 
           showtext(sourcelocation);
@@ -80,12 +82,12 @@ using namespace std;
 
           cout << "You text data is: (type \"#Y\" to encrypt) \n" << "\n";
           writetext();
-          ProcessFile( "manual.txt", outputlocation, steplocation );
+          enigma.ProcessFile( "manual.txt", outputlocation, steplocation );
         }
 
 
 
-        reset();
+        enigma.reset();
 
         cout << "\n\nencrypt data is:  \n" << "\n"<< "\n"<< "\n";
         Sleep(2000);
@@ -107,13 +109,13 @@ using namespace std;
         system("cls");       cout << "01 for text file / 02 for manual\n";
         string Op;
         cin >> Op;
-        InitEnigma();
-        TryUserSetup();
+        enigma.InitEnigma();
+        enigma.TryUserSetup();
 
         if(Op == "01"){
           system("cls");
-          reset();
-          ProcessFile(sourcelocation, outputlocation, steplocation );
+          enigma.reset();
+          enigma.ProcessFile(sourcelocation, outputlocation, steplocation );
           cout << "You encrypt data is:  \n" << "\n"<< "\n"<< "\n";
           showtext(sourcelocation);
 
@@ -121,7 +123,7 @@ using namespace std;
           system("cls");
           cout << "You text data is: (type \"#Y\" to decrypt) \n" << "\n";
           writetext();
-          ProcessFile( "manual.txt", outputlocation, steplocation );
+          enigma.ProcessFile( "manual.txt", outputlocation, steplocation );
 
 
         }
@@ -144,6 +146,4 @@ using namespace std;
         std::remove("elog.txt");
         std::remove("manual.txt");
       }
-
-      return 0;
     }

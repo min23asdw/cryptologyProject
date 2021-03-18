@@ -1,3 +1,4 @@
+#pragma once
 #define Nchars 26  // Total number of encipherable characters
 #define Mchars 26  // Buffer size for strings containing Nchars
 #define Nrotors 11 // Maximum number of rotors (1-based: 1-10)

@@ -1,3 +1,4 @@
+#pragma once
 #include<iostream>
 #include<iomanip>
 #include<vector>
@@ -28,6 +29,7 @@ class rc4System{
         void rc4Decrypt(string,vector<unsigned char>);
         void modeEncrypt();
         void modeDecrypt();
+        void run();
 };
 /*
 // Global Variables
