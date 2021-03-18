@@ -16,11 +16,6 @@ public:
     vector<int> e;
     vector<int> d;
 
-    void ClearScreen()
-    {
-        cout << string(100, '\n');
-    }
-
     void reset()
     {
         cn.clear();
@@ -148,13 +143,14 @@ public:
 
     void showencryptedtext()
     {
+        string c = "";
+        char temp[1];
 
-        char c[tn.size() + 1];
-        for (unsigned int i = 0; i < tn.size(); i++)
+        for (unsigned int i = 0; i < cn.size(); i++)
         {
-            c[i] = cn[i];
+            temp[0] = cn[i];
+            c = c + temp[0];
         }
-        c[tn.size() + 1] = '\0';
         cout << "ENCRYPTED MESSAGES : " << c << "\n";
     }
     void decrypt()
@@ -165,15 +161,25 @@ public:
         }
     }
 
+    void mdecrypt()
+    {
+        for (unsigned int i = 0; i < cn.size(); i++)
+        {
+            mn.push_back(mod(cn[i], d[key - 1], n));
+        }
+    }
+
     void showdecryptedtext()
     {
-
-        char c[mn.size() + 1];
+        string c = "";
+        // char c[mn.size() + 1];
+        char temp[1];
         for (unsigned int i = 0; i < mn.size(); i++)
         {
-            c[i] = mn[i];
+            temp[0] = mn[i];
+            c = c + temp[0];
         }
-        c[mn.size() + 1] = '\0';
+        // c[mn.size() + 1] = '\0';
         cout << "DECRYPTED MESSAGES : " << c << "\n";
     }
 
@@ -212,7 +218,10 @@ public:
                         q = stoi(input);
                         if (prime(q) && p != q)
                         {
-                            break;
+                            if (p > 11 || q > 11)
+                            {
+                                break;
+                            }
                         }
                     }
                     cout << "TRY AGAIN PLEASE INPUT PRIMENUMBER\nINPUT SECOND PRIMENUMBER : ";
@@ -256,6 +265,13 @@ public:
             else if (menu == "02")
             {
                 break;
+            }
+            else if (menu == "03")
+            {
+                string input;
+                cout << "INPUT ENCRYPTED TEXT :";
+                getline(cin, inpiut);
+                                
             }
             else
             {
