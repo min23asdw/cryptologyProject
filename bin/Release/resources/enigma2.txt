@@ -1,0 +1,8 @@
+	The Enigma machine is a cipher device used in World War II  by Nazi Germanyto
+	.
+	   The Enigma machine was considered to be so secure that even the most top–secret
+		to protect commercial, diplomatic, and military communication. 
+	.
+	Enigma has an electromechanical rotor mechanism that scrambles the 26 letters of the alphabet.
+ 	In typical use, one person enters text on the Enigma's keyboard and another person writes down 
+	which of 26 lights above the keyboard lights up at each key press. 

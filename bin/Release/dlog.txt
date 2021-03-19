@@ -1,0 +1,107 @@
+Plugboard mappings:
+abcdefghijklmnopqrstuvwxyz
+abcdefghijklmnopqrstuvwxyz
+
+Rotor wirings:
+position rotor ring setting notch sequence
+       3     3            a     v bdfhjlcprtxvznyeiwgakmusqo
+       2     1            c     q ekmflgdqvzntowyhxuspaibrcj
+       1     2            b     e ajdksiruxblhwtmcqgznpyfvoe
+
+reflector  yruhqsldpxngokmiebfzcwvjat
+
+rotors:
+3: b->dfhjlcprtxvznyeiwgakmusqo
+2: e->kmflgdqvzntowyhxuspaibrcj
+1: a->jdksiruxblhwtmcqgznpyfvoe
+
+
+Encryption
+a c d    o -> o -> d -> m -> b -> r -> t -> w -> p -> p
+a c k    t -> t -> a -> d -> z -> t -> o -> e -> o -> o
+a c s    l -> l -> s -> c -> i -> p -> u -> q -> n -> n
+a c i    x -> x -> a -> d -> z -> t -> o -> e -> g -> g
+a c r    f -> f -> o -> s -> j -> x -> q -> k -> s -> s
+a c u    e -> e -> u -> b -> g -> l -> w -> v -> a -> a
+a c x    b -> b -> r -> a -> e -> q -> g -> x -> k -> k
+a c b    r -> r -> y -> l -> v -> w -> j -> b -> o -> o
+a c l    y -> y -> q -> u -> p -> i -> c -> s -> r -> r
+a c h    m -> m -> g -> n -> f -> s -> i -> i -> n -> n
+a c w    z -> z -> c -> e -> m -> o -> f -> j -> a -> a
+a c t    f -> f -> v -> w -> l -> g -> b -> u -> a -> a
+a c m    o -> o -> o -> s -> j -> x -> q -> k -> a -> a
+a c c    j -> j -> f -> x -> y -> a -> y -> l -> r -> r
+a c q    r -> r -> e -> o -> t -> z -> d -> a -> a -> a
+a c g    f -> f -> b -> j -> w -> v -> l -> y -> t -> t
+a c z    d -> d -> e -> o -> t -> z -> d -> a -> t -> t
+a c n    k -> k -> i -> i -> s -> f -> n -> g -> a -> a
+a c p    d -> d -> k -> q -> x -> j -> s -> o -> n -> n
+a c y    s -> s -> s -> c -> i -> p -> u -> q -> a -> a
+a c f    i -> i -> o -> s -> j -> x -> q -> k -> p -> p
+a c v    l -> l -> w -> t -> r -> b -> m -> d -> a -> a
+a c o    r -> r -> u -> b -> g -> l -> w -> v -> n -> n
+
+a c e    f -> f -> x -> g -> q -> e -> a -> r -> t -> t
+a m a    n -> n -> t -> u -> p -> i -> c -> a -> a -> a
+a m j    k -> k -> e -> l -> v -> w -> j -> w -> n -> n
+a m d    h -> h -> i -> o -> t -> z -> d -> h -> a -> a
+a m k    v -> v -> y -> b -> g -> l -> w -> j -> d -> d
+a m s    l -> l -> s -> z -> c -> u -> h -> z -> o -> o
+a m i    o -> o -> x -> n -> f -> s -> i -> f -> l -> l
+a m r    i -> i -> n -> x -> y -> a -> y -> p -> a -> a
+a m u    c -> c -> l -> f -> o -> m -> e -> v -> a -> a
+a m x    u -> u -> j -> w -> l -> g -> b -> y -> a -> a
+a m b    b -> b -> c -> m -> b -> r -> t -> r -> d -> d
+a m l    i -> i -> c -> m -> b -> r -> t -> r -> e -> e
+a m h    f -> f -> p -> y -> a -> y -> x -> n -> a -> a
+a m w    b -> b -> z -> h -> u -> c -> z -> s -> c -> c
+a m t    q -> q -> i -> o -> t -> z -> d -> h -> h -> h
+a m m    u -> u -> f -> i -> s -> f -> n -> x -> p -> p
+a m c    g -> g -> v -> e -> m -> o -> f -> l -> r -> r
+a m q    l -> l -> t -> u -> p -> i -> c -> a -> a -> a
+a m g    q -> q -> z -> h -> u -> c -> z -> s -> p -> p
+a m z    n -> n -> x -> n -> f -> s -> i -> f -> a -> a
+a m n    u -> u -> h -> d -> z -> t -> o -> i -> k -> k
+a m p    l -> l -> l -> f -> o -> m -> e -> v -> o -> o
+a m y    j -> j -> w -> j -> w -> v -> l -> e -> r -> r
+a m f    p -> p -> k -> p -> d -> h -> r -> u -> n -> n
+
+a m v    n -> n -> c -> m -> b -> r -> t -> r -> t -> t
+a m o    r -> r -> u -> r -> h -> d -> p -> k -> h -> h
+a m e    m -> m -> m -> q -> x -> j -> s -> o -> a -> a
+a f a    j -> j -> b -> y -> a -> y -> x -> t -> n -> n
+a f j    v -> v -> j -> t -> r -> b -> m -> s -> a -> a
+a f d    j -> j -> t -> x -> y -> a -> y -> b -> w -> w
+a f k    s -> s -> t -> x -> y -> a -> y -> b -> a -> a
+a f s    z -> z -> o -> k -> k -> n -> v -> p -> t -> t
+a f i    e -> e -> o -> k -> k -> n -> v -> p -> a -> a
+a f r    f -> f -> o -> k -> k -> n -> v -> p -> a -> a
+a f u    m -> m -> x -> h -> u -> c -> z -> v -> a -> a
+a f x    l -> l -> a -> b -> g -> l -> w -> r -> b -> b
+a f b    l -> l -> v -> z -> c -> u -> h -> x -> u -> u
+a f l    j -> j -> e -> u -> p -> i -> c -> k -> m -> m
+a f h    k -> k -> z -> g -> q -> e -> a -> y -> p -> p
+a f w    v -> v -> k -> c -> i -> p -> u -> e -> e -> e
+a f t    l -> l -> z -> g -> q -> e -> a -> y -> n -> n
+a f m    u -> u -> f -> i -> s -> f -> n -> n -> g -> g
+a f c    m -> m -> k -> c -> i -> p -> u -> e -> p -> p
+a f q    d -> d -> x -> h -> u -> c -> z -> v -> u -> u
+a f g    z -> z -> c -> l -> v -> w -> j -> h -> n -> n
+
+a f z    a -> a -> f -> i -> s -> f -> n -> n -> p -> p
+a f n    h -> h -> c -> l -> v -> w -> j -> h -> u -> u
+a f p    x -> x -> h -> j -> w -> v -> l -> c -> r -> r
+a f y    u -> u -> b -> y -> a -> y -> x -> t -> i -> i
+a f f    i -> i -> o -> k -> k -> n -> v -> p -> c -> c
+a f v    q -> q -> m -> p -> d -> h -> r -> i -> h -> h
+a f o    f -> f -> z -> g -> q -> e -> a -> y -> a -> a
+a f e    j -> j -> p -> v -> n -> k -> k -> o -> a -> a
+a l a    c -> c -> d -> n -> f -> s -> i -> a -> a -> a
+a l j    f -> f -> d -> n -> f -> s -> i -> a -> s -> s
+a l d    e -> e -> r -> b -> g -> l -> w -> e -> i -> i
+a l k    m -> m -> v -> s -> j -> x -> q -> l -> n -> n
+a l s    j -> j -> r -> b -> g -> l -> w -> e -> u -> u
+a l i    l -> l -> f -> m -> b -> r -> t -> p -> a -> a
+a l r    m -> m -> t -> a -> e -> q -> g -> m -> l -> l
+a l u    f -> f -> k -> x -> y -> a -> y -> o -> l -> l
+
