@@ -88,7 +88,9 @@ using namespace std;
           cout << "You text data is:  \n" << "\n"<< "\n"<< "\n";
 
           showtext(sourcelocation);
-
+          cin.clear();
+          cout << "Press Enter to Continue";
+          cin.ignore();
         }else if(Op == "02" || Op == "2"){
           system("cls");
 
@@ -109,6 +111,7 @@ using namespace std;
         cout << "Close the image to continue\n";
         Sleep(2000);
         showtext(steplocation);
+        cin.clear();
         cout << "Press Enter to Continue";
         cin.ignore();
         system("cls");
@@ -132,7 +135,9 @@ using namespace std;
           enigma.ProcessFile(sourcelocation, outputlocation, steplocation );
           cout << "You encrypt data is:  \n" << "\n"<< "\n"<< "\n";
           showtext(sourcelocation);
-
+          cin.clear();
+          cout << "Press Enter to Continue";
+          cin.ignore();
         }else if(Op == "02" || Op == "2"){
           system("cls");
           cout << "You text data is: (type \"#Y\" and enter to decrypt) \n" << "\n";
@@ -149,6 +154,7 @@ using namespace std;
         show.showImage("display/howitwork.bmp", "howitwork", 420, 209);
         Sleep(2000);
         showtext(steplocation);
+        cin.clear();
         cout << "Press Enter to Continue";
         cin.ignore();
         system("cls");}
