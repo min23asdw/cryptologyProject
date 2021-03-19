@@ -1,7 +1,7 @@
 #include "rc4Main.h"
 #include "rc4system.h"
 
-void rc4Main::run() {
+bool rc4Main::run() {
 	HWND console = GetConsoleWindow();
 	RECT ConsoleRect;
 	GetWindowRect(console, &ConsoleRect);
@@ -15,6 +15,9 @@ void rc4Main::run() {
 		}
 		if (mode == 3) {
 			rc4.modeDecrypt(); // Run Decrypt Mode
+		}
+		if (mode == 4) {
+			return true;
 		}
 	}
 }

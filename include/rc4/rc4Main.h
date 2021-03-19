@@ -3,5 +3,5 @@
 class rc4Main
 {
 public:
-	void run();
+	bool run();
 };

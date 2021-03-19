@@ -36,4 +36,5 @@ private:
 
 public:
 	void run();
+	bool menu();
 };

@@ -5,6 +5,14 @@
 
 using namespace std;
 
+void UI::setUpWindow()
+{
+	HWND console = GetConsoleWindow();
+	RECT ConsoleRect;
+	GetWindowRect(console, &ConsoleRect);
+	MoveWindow(console, ConsoleRect.left, ConsoleRect.top, 1280, 720, TRUE);
+}
+
 int UI::menu(string header)
 {
 	int itemsSize = menuItems.size();

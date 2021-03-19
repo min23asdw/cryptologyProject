@@ -1,13 +1,38 @@
-sssssssssssssSteganography is asfasgagaggggasgasgagagagadgadgadgadgadg
-sssssssssssssagadgadgadgaddddddddddddddgdddddddddddddddddddddddddddddd
-sssssssssssssddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+	cover_medium + hidden_data + stego_key = stego_medium
 
-.............ddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
-.............afafads..1235
+	cover_medium - file which we wil hide the hidden_data
+	stego_key - key that can be used to encrypt the hidden_data
+	stego_medium - resultant file, concealing the hidden_data
 
-.............Steganography is asfasgagaggggasgasgagagagadgadgadgadgadg
-.............agadgadgadgaddddddddddddddgdddddddddddddddddddddddddddddd
-.............ddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+	In this program, we will use an image file to hide our data.
 
-.............ddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
-.............afafads..1235
+	Image formats, used in this program use 24-bit color -- 3 bytes.
+	In this case, each byte represents the intensity of the three
+	primary colors red, green, blue (RGB).
+
+	The simplest method to hiding data is called "least significant bit (LSB)
+	insertion". This is the method we used in our program.
+
+	We take the binray representation of the hidden_data and overwrite the LSB
+	which in this case is the last bit of each byte within the cover_image.
+	The amount of change of just one color value is minimal and cannot seen by
+	naked eyes.
+
+	Example: 3 pixels - 9-bytes
+
+			Red        Green      Blue		
+	1st:	10010101   00001101   11001001
+	2nd:	10010110   00001111   11001010
+	3rd:	10011111   00010000   11001011
+
+	We want to hide a letter "K" in these pixels.
+	Binary representation of "K" is 01001011.
+	We take each digit of its binary and overwrite the LSB of pixel binary.
+	The pixels will become.
+
+	1st                     K	2nd                     K	3rd                     K
+	10010101 -> 10010100	0	10010110 -> 10010110	0	10011111 -> 10011111	1
+	00001101 -> 00001101    1	00001111 -> 00001111	1	00010000 -> 00010001	1
+	11001001 -> 11001000    0	11001010 -> 11001010	0	11001011
+
+	K: 01001011

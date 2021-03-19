@@ -1,4 +1,5 @@
 #include "rsaSystem.h"
+#include "UI.h"
 
 using namespace std;
 
@@ -175,7 +176,7 @@ void RSA::run()
 	do
 	{
 
-		cout << "\tRSA\n||||||||||||||||||||||\nSELECT YOUR OPTION\n[01]ENCRYPT RSA \n[02]DECRYPT RSA \n[03]EXIT\nINPUT YOUR OPTION : ";
+		cout << "\tRSA\n||||||||||||||||||||||\nTYPE THE NUMBER TO SELECT YOUR OPTION\n[01]ENCRYPT RSA \n[02]DECRYPT RSA \n[03]EXIT\nINPUT YOUR OPTION : ";
 		getline(cin, menu);
 		if (menu == "01")
 		{
@@ -286,6 +287,7 @@ void RSA::run()
 		}
 		else if (menu == "03")
 		{
+			system("CLS");
 			break;
 		}
 		else
@@ -294,4 +296,56 @@ void RSA::run()
 			cout << "\n#########INCORRECT INPUT#########\n\n";
 		}
 	} while (true);
+}
+
+
+bool RSA::menu()
+{
+	UI rsaMenu;
+
+	const vector<string> textFileName
+	{
+		"resources/rsa1.txt",
+		"resources/rsa2.txt",
+		"resources/rsa3.txt"
+	};
+
+	const vector<string> headings
+	{
+		"RSA",
+		"History",
+		"How it works?"
+	};
+
+	rsaMenu.addMenuItems("What is RSA?", 7);
+	rsaMenu.addMenuItems("Encrypt/Decrypt", 7);
+	rsaMenu.addMenuItems("Exit to main menu", 7);
+
+	while (true)
+	{
+		rsaMenu.clearScreen();
+		int menuRes = rsaMenu.menu("RSA");
+		int textRes;
+		if (menuRes == 0)
+		{
+			textRes = rsaMenu.textPage(textFileName, headings);
+			if (textRes)
+			{
+				rsaMenu.clearScreen();
+				continue;
+			}
+		}
+		if (menuRes == 1)
+		{
+			rsaMenu.clearScreen();
+			run();
+		}
+		if (menuRes == 2)
+		{
+			rsaMenu.clearScreen();
+			return true;
+		}
+	}
+
+	return true;
 }

@@ -9,7 +9,7 @@ using namespace std;
 int main()
 {
 	UI mainUI;
-
+	
 	rc4Main rc4;
 	stegMain steg;
 	enigmaMain enigma;
@@ -22,22 +22,27 @@ int main()
 
 	while (true)
 	{
+		cout << "Cryptology Project\n";
 		int menuRes = mainUI.menu("Main Menu");
 		mainUI.clearScreen();
 
 		if (menuRes == 0)
 		{
-			enigma.run();
+			enigma.menu();
 		}
 
 		if (menuRes == 1)
 		{
-			rc4.run();
+			if (rc4.run())
+			{
+				mainUI.clearScreen();
+				continue;
+			}
 		}
 
 		if (menuRes == 2)
 		{
-			rsa.run();
+			rsa.menu();
 		}
 
 		if (menuRes == 3)

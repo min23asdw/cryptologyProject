@@ -6,7 +6,9 @@
 #include <fstream>
 #include <conio.h>
 #include <cstring>
+#include <vector>
 #include "display.h"
+#include "UI.h"
 #include "enigmaSystem.h"
 #include "enigmaMain.h"
 
@@ -52,15 +54,25 @@ using namespace std;
 
       display show;
       Enigma enigma;
+      
+      cout << "Take a look at the image. You can set up the maching by creating and editing <eSetup>\n";
+      cout << "Close the image to continue\n";
+
+      cout << "Close the image to continue\n";
+      show.showImage("display/setup.bmp", "howitwork-setup", 1268, 498);
+
+      cout << "Close the image to continue\n";
+      show.showImage("display/wiring.bmp", "howitwork-wiring", 1840, 634);
 
       while(true){ system("cls");
-      cout << "01 for encrypt / 02 for decrypt(X) / 03 for exit to main\n";
+      cout << "TYPE THE NUMBER TO SELECT\n";
+      cout << "[01] to encrypt / [02] to decrypt(X) / [03] to exit\n";
       string Command;
       cin >> Command;
 
 
 
-      if(Command == "01"){
+      if(Command == "01" || Command == "1"){
         char* sourcelocation = "plain.txt";
         char* outputlocation = "encrypt.txt";
         char* steplocation = "elog.txt";
@@ -70,17 +82,17 @@ using namespace std;
         enigma.InitEnigma();
         enigma.TryUserSetup();
 
-        if(Op == "01"){
+        if(Op == "01" || Op == "1"){
           system("cls");
           enigma.ProcessFile(sourcelocation, outputlocation, steplocation );
           cout << "You text data is:  \n" << "\n"<< "\n"<< "\n";
 
           showtext(sourcelocation);
 
-        }else if(Op == "02"){
+        }else if(Op == "02" || Op == "2"){
           system("cls");
 
-          cout << "You text data is: (type \"#Y\" to encrypt) \n" << "\n";
+          cout << "You text data is: (type \"#Y\" and enter to encrypt) \n" << "\n";
           writetext();
           enigma.ProcessFile( "manual.txt", outputlocation, steplocation );
         }
@@ -92,7 +104,9 @@ using namespace std;
         cout << "\n\nencrypt data is:  \n" << "\n"<< "\n"<< "\n";
         Sleep(2000);
         showtext(outputlocation);
+        cout << "Close the image to continue\n";
         show.showImage("display/howitwork.bmp", "howitwork", 420, 209);
+        cout << "Close the image to continue\n";
         Sleep(2000);
         showtext(steplocation);
         cout << "Press Enter to Continue";
@@ -102,7 +116,7 @@ using namespace std;
 
 
 
-      else if(Command == "02"){
+      else if(Command == "02" || Command == "2"){
         char* sourcelocation = "encrypttext.txt";
         char* outputlocation = "decrypt.txt";
         char* steplocation = "dlog.txt";
@@ -112,16 +126,16 @@ using namespace std;
         enigma.InitEnigma();
         enigma.TryUserSetup();
 
-        if(Op == "01"){
+        if(Op == "01" || Op == "1"){
           system("cls");
           enigma.reset();
           enigma.ProcessFile(sourcelocation, outputlocation, steplocation );
           cout << "You encrypt data is:  \n" << "\n"<< "\n"<< "\n";
           showtext(sourcelocation);
 
-        }else if(Op == "02"){
+        }else if(Op == "02" || Op == "2"){
           system("cls");
-          cout << "You text data is: (type \"#Y\" to decrypt) \n" << "\n";
+          cout << "You text data is: (type \"#Y\" and enter to decrypt) \n" << "\n";
           writetext();
           enigma.ProcessFile( "manual.txt", outputlocation, steplocation );
 
@@ -131,13 +145,14 @@ using namespace std;
         cout << "\n\ndecrypt data is:  \n" << "\n"<< "\n"<< "\n";
         Sleep(2000);
         showtext(outputlocation);
+        cout << "Close the image to continue\n";
         show.showImage("display/howitwork.bmp", "howitwork", 420, 209);
         Sleep(2000);
         showtext(steplocation);
         cout << "Press Enter to Continue";
         cin.ignore();
         system("cls");}
-        if(Command == "03"){system("cls");break;}
+        if(Command == "03" || Command == "3"){system("cls");break;}
 
 
         std::remove("encrypt.txt");
@@ -146,4 +161,55 @@ using namespace std;
         std::remove("elog.txt");
         std::remove("manual.txt");
       }
+    }
+
+    bool enigmaMain::menu()
+    {
+        UI enigmaMenu;
+
+        const vector<string> textFileName
+        {
+            "resources/enigma1.txt",
+            "resources/enigma2.txt",
+            "resources/enigma3.txt"
+        };
+
+        const vector<string> headings
+        {
+            "Enigma",
+            "History",
+            "How it works?"
+        };
+
+        enigmaMenu.addMenuItems("What is Enigma?", 7);
+        enigmaMenu.addMenuItems("Encrypt/Decrypt", 7);
+        enigmaMenu.addMenuItems("Exit to main menu", 7);
+
+        while (true)
+        {
+            enigmaMenu.clearScreen();
+            int menuRes = enigmaMenu.menu("Enigma");
+            int textRes;
+            if (menuRes == 0)
+            {
+                textRes = enigmaMenu.textPage(textFileName, headings);
+                if (textRes)
+                {
+                    enigmaMenu.clearScreen();
+                    continue;
+                }
+            }
+            if (menuRes == 1)
+            {
+                enigmaMenu.clearScreen();
+                run();
+            }
+            if (menuRes == 2)
+            {
+                enigmaMenu.clearScreen();
+                return true;
+            }
+        }
+
+        return true;
     }

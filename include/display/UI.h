@@ -20,7 +20,9 @@ private:
 	vector<MenuItem> menuItems;
 
 public:
-	UI() {}
+	UI() {
+		setUpWindow();
+	}
 
 	int menu(string header);
 	bool textPage(const vector<string>& textFileName, const vector<string>& heading);
@@ -31,4 +33,5 @@ public:
 	string readFileIntoString(const string& path);
 	COORD GetConsoleCursorPosition(HANDLE hConsoleOutput);
 	void setBeginPos(int x, int y);
+	void setUpWindow();
 };

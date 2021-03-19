@@ -158,7 +158,7 @@ void rc4Menu::whatIsRC4() {
 
 int rc4Menu::RC4menu() {
 
-	int Set[] = { 7,7,7 }; // Default colors
+	int Set[] = { 7,7,7,7 }; // Default colors
 	system("cls");
 	int counter = 1;
 	char select;
@@ -180,12 +180,16 @@ int rc4Menu::RC4menu() {
 		color(Set[2]);
 		cout << "3. Decryption";
 
+		gotoxy(10, 8);
+		color(Set[3]);
+		cout << "4. Exit to main menu";
+
 		select = _getch();
 
-		if (select == 72 && (counter >= 2 && counter <= 3)) {   // 72 = up arrow key
+		if (select == 72 && counter > 1) {   // 72 = up arrow key
 			counter--;
 		}
-		if (select == 80 && (counter >= 1 && counter <= 2)) {   // 80 = down arrow key
+		if (select == 80 && counter < 4) {   // 80 = down arrow key
 			counter++;
 		}
 		if (select == '\r') //carriage return = enter key
@@ -200,10 +204,14 @@ int rc4Menu::RC4menu() {
 			if (counter == 3) {
 				return 3;
 			}
+			if (counter == 4) {
+				return 4;
+			}
 		}
 		Set[0] = 7;
 		Set[1] = 7;
 		Set[2] = 7;
+		Set[3] = 7;
 		if (counter == 1) {
 			Set[0] = 12; // 12 is color red
 		}
@@ -213,8 +221,9 @@ int rc4Menu::RC4menu() {
 		if (counter == 3) {
 			Set[2] = 12; // 12 is color red
 		}
-
-
+		if (counter == 4) {
+			Set[3] = 12; // 12 is color red
+		}
 	}
 }
 

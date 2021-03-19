@@ -1,13 +1,35 @@
-sssssssssssssSteganography is asfasgagaggggasgasgagagagadgadgadgadgadg
-sssssssssssssagadgadgadgaddddddddddddddgdddddddddddddddddddddddddddddd
-sssssssssssssddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+	The first description of the use of steganography dates back to the Greeks. 
+	Herodotus tells how a message was passed to the Greeks about Xerses' hostile 
+	intentions underneath the wax of a writing tablet, and describes a technique 
+	of dotting successive letters in a cover text with a secret ink, due to 
+	Aeneas the Tactician.
 
-.............ddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
-.............afafads..1235
+	Pirate legends tell of the practice of tattooing a secret information, 
+	such as a map, on the head of someone, so that the hair would conceal it.
 
-.............Steganography is asfasgagaggggasgasgagagagadgadgadgadgadg
-.............agadgadgadgaddddddddddddddgdddddddddddddddddddddddddddddd
-.............ddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+	During WWII the grille method or some variants were used by spies. In the same period, 
+	the Germans developed microdot technology, which prints a clear, good quality 
+	photograph shrinking it to the size of a dot.
 
-.............ddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
-.............afafads..1235
+	There are rumors that during the 1980's Margareth Thatcher, then Prime Minister in UK, 
+	became so irritated about press leaks of cabinet documents, that she had the word processors 
+	programmed to encode the identity of the writer in the word spacing, thus being able 
+	to trace the disloyal ministers.
+
+	During the "Cold War" period, US and USSR wanted to hide their sensors in the enemy's 
+	facilities. These devices had to send data to their nations, without being spotted.
+
+	Today, steganography is researched both for legal and illegal reasons.
+
+	Among the first ones there is war telecommunications, which use spread spectrum or 
+	meteor scatter radio in order to conceal both the message and its source.
+
+	In the industry market, with the advent of digital communications and storage, one of the 
+	most important issues is copyright enforcement, so digital watermarking techniques are 
+	being developed to restrict the use of copyrighted data.
+
+	Another important use is to embed data about medical images, so that there are no problems 
+	with matching patient's records and images.
+
+	Among illegal ones is the practice of hiding strongly-encrypted data to avoid controls by 
+	cryptography export laws.
