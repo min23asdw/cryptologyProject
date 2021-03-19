@@ -2,6 +2,25 @@
 
 using namespace std;
 
+string rc4System::hexToASCII(string hex) {
+
+    // initialize the ASCII code string as empty. 
+    string ascii = "";
+    for (size_t i = 0; i < hex.length(); i += 2)
+    {
+        // extract two characters from hex string 
+        string part = hex.substr(i, 2);
+
+        // change it into base 16 and  
+        // typecast as the character 
+        char ch = stoul(part, nullptr, 16);
+
+        // add this char to final ASCII string 
+        ascii += ch;
+    }
+    return ascii;
+}
+
 // Array Initialization
 void rc4System::arrayInit(vector<unsigned char>& S) {
     unsigned int i = 0;
@@ -22,7 +41,7 @@ void rc4System::arrayInit(vector<unsigned char>& S) {
             cout << "The first step is the array initialization. It is a character array of size 256" << endl;
             cout << "for every element of the array, we initialize S[i] to i." << endl << endl;
             cout << "[+] Array initialize.." << endl << endl;
-            cout << "         " << "S[" << i << "]" << " = " << (int)S[i] << " (ASCII) " << endl << endl;
+            cout << "         " << "S[" << i << "]" << " = " << dec << (int)S[i] << " (ASCII) " << endl << endl;
         }
         Sleep(10);
     }
@@ -33,15 +52,20 @@ void rc4System::arrayInit(vector<unsigned char>& S) {
 }
 
 // Key Scheduling Algorithm (KSA)
-void rc4System::keySchedulAlgor(string& key, vector<unsigned char>& S) {
+void rc4System::keySchedulAlgor(string& key, vector<unsigned char>& S, string text) {
     Sleep(500);
     cout << ": Key Scheduling Algorithm (KSA) :" << endl << endl;
     int i = 0, j = 0;
     Sleep(500);
-    cout << "[+] Your Plain Text: " << plaintext << endl << endl;
+    cout << "[+] Your Text as (char) is: " << text << endl << endl;
     Sleep(250);
-    cout << "[+] Enter the secret key: ";
-    getline(cin, key);
+    do {
+        cout << "[+] Enter the secret key: ";
+        getline(cin, key);
+        if (key == "") {
+            cout << "Invalid Input" << endl;
+        }
+    } while (key == "");
     Sleep(250);
     cout << "    Your Secret Key: " << key << endl;
     cout << "    Your Secret Key Length: " << key.length() << endl << endl;
@@ -94,6 +118,7 @@ void rc4System::keySchedulAlgor(string& key, vector<unsigned char>& S) {
 // Pseudo Random Generation Algorithm (PRGA)
 void rc4System::pseudoRanGen(string plaintext, vector<unsigned char> S) {
     system("cls");
+    keyStream.clear();
     Sleep(500);
     cout << ": Pseudo Random Generation Algorithm (PRGA) :" << endl << endl;
     Sleep(500);
@@ -152,8 +177,8 @@ void rc4System::rc4Encrypt(string plaintext, vector<unsigned char> keyStream) {
 // Decryption Algorithm [ Ciphertext XOR with Keystream ] Need to run Array Init,KSA,PRGA before this
 void rc4System::rc4Decrypt(string ciphertext, vector<unsigned char> keyStream) {
     Sleep(500);
-    cout << "Let's XOR ciphertext with keystream" << endl << endl;
-    for (int i = 0; i < plaintext.size() + 1; i++) {
+    cout << "\nLet's XOR ciphertext with keystream" << endl << endl;
+    for (int i = 0; i < ciphertext.size() + 1; i++) {
         decrypted[i] = keyStream[i] ^ ciphertext[i]; // Ciphertext XOR with Keystream = Plaintext
     }
 }
@@ -165,8 +190,13 @@ void rc4System::modeEncrypt() {
     char select;
     system("cls");
     cout << "[ Encryption ]";
-    cout << endl << endl << "Input the text: ";
-    getline(cin, plaintext);
+    do {
+        cout << endl << endl << "Input the text: ";
+        getline(cin, plaintext);
+        if (plaintext == "") {
+            cout << "Invalid Input\n";
+        }
+    } while (plaintext == "");
     Sleep(250);
     cout << "[+] Your Plain Text: " << plaintext << endl << endl;
     Sleep(250);
@@ -183,7 +213,7 @@ void rc4System::modeEncrypt() {
     cin.get();
     Sleep(500);
     system("cls");
-    keySchedulAlgor(key, S);
+    keySchedulAlgor(key, S, plaintext);
     menu.NextAlgor();
     cout << ": Pseudo Random Generation Algorithm (PRGA) :" << endl << endl;
     Sleep(250);
@@ -231,38 +261,55 @@ void rc4System::modeEncrypt() {
 void rc4System::modeDecrypt() {
     menu.color(7);
     system("cls");
-    if (checkEncrypt == false)
-    {
-        menu.gotoxy(5, 2);
-        cout << "You must encrypted the text first !";
+    cout << "[ Decryption ]" << endl << endl;
+    cout << "\nInput Your Cipher text as (hex) like this (Input: a63f8a110e): ";
+    do {
+        cin >> hexCipher;
+        cipher = hexToASCII(hexCipher);
+    } while (hexCipher == "");
+    Sleep(250);
+    cout << endl << "Run the KSA,PRGA to generate keystream from your secret key" << endl;
+    Sleep(500);
+    cout << "Press anykey to next step.";
+    cin.ignore();
+    cin.get();
+    Sleep(500);
+    arrayInit(S);
+    menu.NextAlgor();
+    cout << ": Key Scheduling Algorithm (KSA) :" << endl << endl;
+    Sleep(250);
+    cout << "Press anykey to next step.";
+    cin.get();
+    Sleep(500);
+    system("cls");
+    keySchedulAlgor(key, S, cipher);
+    menu.NextAlgor();
+    cout << ": Pseudo Random Generation Algorithm (PRGA) :" << endl << endl;
+    Sleep(250);
+    cout << "Press anykey to next step.";
+    cin.get();
+    pseudoRanGen(cipher, S);
+    menu.NextAlgor();
+    cout << "Press anykey to next step.";
+    cin.get();
+    system("cls");
+    Sleep(500);
+    cout << "[ Result ]" << endl << endl;
+    Sleep(500);
+    cout << "Your Ciphertext as (hex): " << hexCipher;
+    Sleep(500);
+    cout << endl << "Your Secret Key: " << key << endl << endl;
+    Sleep(500);
+    cout << "Your keystream (hex) is : ";
+    for (int i = 0; i < keyStream.size(); i++) {
+        cout << uppercase << hex << setfill('0') << setw(2) << (int)(*(unsigned char*)(&keyStream[i])) << " ";
     }
-    else {
-        cout << "[ Decryption ]" << endl << endl;
-        cout << "\nYour Cipher text (hex): ";
-        for (int j = 0; j < plaintext.length(); j++) {
-            cout << uppercase << hex << setfill('0') << setw(2) << (int)(*(unsigned char*)(&cipherText[j])) << " ";
-        }
-        Sleep(500);
-        cout << endl << "Your Secret Key: " << key << endl << endl;
-        Sleep(500);
-        cout << "Decryption do the same as Encryption for generating Keystream from Secret key";
-        Sleep(500);
-        cout << "and XOR the ciphertext with Keystream again will get decrypted text\n";
-        Sleep(250);
-        cout << "\nExample: Let A be the plain text and B be the keystream (A xor B) xor B = A \n";
-        Sleep(500);
-        cout << "\nYour keystream (hex) is : ";
-        Sleep(250);
-        for (int i = 0; i < keyStream.size(); i++) {
-            cout << uppercase << hex << setfill('0') << setw(2) << (int)(*(unsigned char*)(&keyStream[i])) << " ";
-        }
-        cout << endl << endl;
-        Sleep(500);
-        rc4Decrypt(cipherText, keyStream);
-        Sleep(500);
-        cout << "\nYour Decrypted text (char): " << decrypted;
+    Sleep(500);
+    rc4Decrypt(cipher, keyStream);
+    Sleep(500);
+    cout << "\nYour Decrypted text (char): " << decrypted << endl;
 
-    }
+
     char select;
     Sleep(1000);
     menu.gotoxy(5, 24);
@@ -276,24 +323,3 @@ void rc4System::modeDecrypt() {
         }
     }
 }
-
-
-/* main
-int main(){
-    HWND console = GetConsoleWindow();
-    RECT ConsoleRect;
-    GetWindowRect(console, &ConsoleRect);
-    MoveWindow(console, ConsoleRect.left, ConsoleRect.top, 1280, 720, TRUE);
-    rc4System rc4;
-    rc4Menu menu;
-    while(true){
-    int mode = menu.RC4menu();
-    if(mode == 2){
-        rc4.modeEncrypt(); // Run Encrypt Mode
-    }
-    if(mode == 3){
-        rc4.modeDecrypt(); // Run Decrypt Mode
-    }
-    }
-    return 0;
-}*/

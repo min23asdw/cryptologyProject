@@ -92,14 +92,14 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(ProjectDir)lib\zlib;$(ProjectDir)lib\libpng;$(ProjectDir)lib\jpeglib;$(ProjectDir)include\display\CLmgLibrary;$(ProjectDir)include;$(ProjectDir)include\display;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(ProjectDir)include\display\CLmgLibrary;$(ProjectDir)include\;$(ProjectDir)include\display;$(ProjectDir)include\steg;$(ProjectDir)include\rsa;$(ProjectDir)include\rc4;$(ProjectDir)include\enigma</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <TargetMachine>MachineX86</TargetMachine>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>$(ProjectDir)lib\jpeglib;$(ProjectDir)lib\zlib;$(ProjectDir)lib\libpng;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>zlib.lib;libpng16.lib;jpeg.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -108,7 +108,7 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(ProjectDir)lib\jpeglib;$(ProjectDir)include\display\CLmgLibrary;$(ProjectDir)include;$(ProjectDir)include\display;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(ProjectDir)include\display\CLmgLibrary;$(ProjectDir)include\;$(ProjectDir)include\display;$(ProjectDir)include\steg;$(ProjectDir)include\rsa;$(ProjectDir)include\rc4;$(ProjectDir)include\enigma</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <TargetMachine>MachineX86</TargetMachine>
@@ -116,19 +116,19 @@
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(ProjectDir)lib\jpeglib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>jpeg.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(ProjectDir)lib\zlib;$(ProjectDir)lib\libpng;$(ProjectDir)lib\jpeglib;$(ProjectDir)include\display\CLmgLibrary;$(ProjectDir)include;$(ProjectDir)include\display;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(ProjectDir)include\display\CLmgLibrary;$(ProjectDir)include\;$(ProjectDir)include\display;$(ProjectDir)include\steg;$(ProjectDir)include\rsa;$(ProjectDir)include\rc4;$(ProjectDir)include\enigma</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(ProjectDir)lib\jpeglib;$(ProjectDir)lib\zlib;$(ProjectDir)lib\libpng;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>zlib.lib;libpng16.lib;jpeg.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -141,12 +141,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="include\convertPPM.h" />
-    <ClInclude Include="include\rc4menu.h" />
-    <ClInclude Include="include\rc4system.h" />
-    <ClInclude Include="include\enigmaSystem.h" />
-    <ClInclude Include="include\rsaSystem.h" />
-    <ClInclude Include="include\systembackup.h" />
+    <ClInclude Include="include\enigma\enigmaMain.h" />
+    <ClInclude Include="include\steg\convertPPM.h" />
+    <ClInclude Include="include\display\UI.h" />
+    <ClInclude Include="include\rc4\rc4menu.h" />
+    <ClInclude Include="include\rc4\rc4system.h" />
+    <ClInclude Include="include\enigma\enigmaSystem.h" />
+    <ClInclude Include="include\rsa\rsaSystem.h" />
+    <ClInclude Include="include\enigma\systembackup.h" />
     <ClInclude Include="include\display\CLmgLibrary\CImg.h" />
     <ClInclude Include="include\display\CLmgLibrary\plugins\add_fileformat.h" />
     <ClInclude Include="include\display\CLmgLibrary\plugins\bayer.h" />
@@ -166,45 +168,30 @@
     <ClInclude Include="include\display\CLmgLibrary\plugins\vrml.h" />
     <ClInclude Include="include\display\CLmgLibrary\plugins\vtk.h" />
     <ClInclude Include="include\display\display.h" />
-    <ClInclude Include="include\stegPPM.h" />
-    <ClInclude Include="lib\jpeglib\cderror.h" />
-    <ClInclude Include="lib\jpeglib\cdjpeg.h" />
-    <ClInclude Include="lib\jpeglib\jconfig.h" />
-    <ClInclude Include="lib\jpeglib\jdct.h" />
-    <ClInclude Include="lib\jpeglib\jerror.h" />
-    <ClInclude Include="lib\jpeglib\jinclude.h" />
-    <ClInclude Include="lib\jpeglib\jmemsys.h" />
-    <ClInclude Include="lib\jpeglib\jmorecfg.h" />
-    <ClInclude Include="lib\jpeglib\jpegint.h" />
-    <ClInclude Include="lib\jpeglib\jpeglib.h" />
-    <ClInclude Include="lib\jpeglib\jversion.h" />
-    <ClInclude Include="lib\jpeglib\transupp.h" />
+    <ClInclude Include="include\steg\stegPPM.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="include\display\howitwork.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <Library Include="lib\jpeglib\jpeg.lib" />
-    <Library Include="lib\libpng\libpng16.lib" />
-    <Library Include="lib\zlib\zlib.lib" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="include\display\CLmgLibrary\resources\compile_win_icl.bat" />
     <None Include="include\display\CLmgLibrary\resources\compile_win_visualcpp.bat" />
     <None Include="include\display\CLmgLibrary\resources\pycimg.py" />
-    <None Include="lib\jpeglib\jpeg.pdb" />
-    <None Include="lib\libpng\libpng16.dll" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\convertPPM.cpp" />
     <ClCompile Include="src\enigma.cpp" />
     <ClCompile Include="src\enigmaSystem.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="include\rc4\rc4Main.h" />
     <ClCompile Include="src\rc4.cpp" />
     <ClCompile Include="src\rc4menu.cpp" />
     <ClCompile Include="src\rc4system.cpp" />
+    <ClCompile Include="include\steg\stegMain.h" />
     <ClCompile Include="src\rsa.cpp" />
-    <ClCompile Include="src\steganography.cpp" />
+    <ClCompile Include="src\steg.cpp" />
     <ClCompile Include="src\stegPPM.cpp" />
+    <ClCompile Include="src\UI.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

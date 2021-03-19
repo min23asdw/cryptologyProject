@@ -1,0 +1,12 @@
+	Enigma has an electric rotor mechanism that steals 26 letters.
+	.
+  	  If plain text is entered, the lighter character is the encrypted text, entering the ciphertext will revert to plain, readable text.
+	.
+  	  The rotor mechanism changes the electrical connection between the buttons and lights when each button is pressed.
+			[Will spin And made a new pattern]
+	.
+ 	  The security of the system depends on a set of machine settings that are generally changed every day during the war according to a list of pre-distributed secret keys.
+  	  And other settings that were changed for each message. 
+	.
+	.
+	   The receiving station has to know and use the exact settings employed by the transmitting station to successfully decrypt a message.

@@ -1,0 +1,4 @@
+	Every letter printed, the information is passed to the rotor, then
+ 	  the 3 rotors, each rotated according to the preset pattern, 
+	.	     
+	this setting can be regarded as the [Enigma encryption key].

@@ -1,0 +1,18 @@
+	Every letter printed, the information is passed to the rotor, then
+ 	  the 3 rotors, each rotated according to the preset pattern, 
+	.	     
+	this setting can be regarded as the [Enigma encryption key].
+	.	
+	An electrical pathway is a route for current to travel. 
+	By manipulating this phenomenon the Enigma machine was able to scramble messages.[
+	 The mechanical parts act by forming a varying electrical circuit. When a key is pressed, 
+	one or more rotors rotate on the spindle. On the sides of the rotors are a series of 
+	electrical contacts that, after rotation, line up with contacts on the other rotors or
+	 fixed wiring on either end of the spindle. When the rotors are properly aligned, each key 
+	on the keyboard is connected to a unique electrical pathway through the series of contacts and internal wiring. 
+	Current, typically from a battery, flows through the pressed key, into the newly configured set of 
+	circuits and back out again, ultimately lighting one display lamp, which shows the output letter. 
+	.
+	For example, when encrypting a message starting ANX..., the operator would first press the A key, 
+	and the Z lamp might light, so Z would be the first letter of the ciphertext. The operator would next press N, 
+	and then X in the same fashion, and so on.

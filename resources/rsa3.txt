@@ -1,0 +1,22 @@
+    RSA involves a public key and a private key. The public key can be known 
+    by everyone, and it is used for encrypting messages. The intention is 
+    that messages encrypted with the public key can only be decrypted in a 
+    reasonable amount of time by using the private key. The public key 
+    is represented by the integers n and e; and, the private key, by the integer d 
+    (although n is also used during the decryption process, so it might be considered 
+    to be a part of the private key, too). m represents the message 
+    (previously prepared with a certain technique explained below).
+
+    p,q is two distinct prime numbers
+
+    n equal to p*q
+
+    phi equal to (p-1)*(q-1)
+
+    e is public key where 1<e<phi and greatest common divisor of e and phi equal to 1 or relatively prime
+
+    d is private key where d times e then divided by φ and remainder is 1
+
+    encrypt function is c = (m^e)%n 
+
+    decrypt function is m = (c^d)%n
